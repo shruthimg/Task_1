@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8" >
+
+    <div class="table">
+      <div class="table-row">
+        <div class="table-col header" *ngFor="let column of headers">{{column}}
+        </div>
+      </div>
+
+      <div style="overflow-y:scroll; height: 150px ">
+        <div class="table-row" *ngFor="let row of rows">
+          <div class="table-col" *ngFor="let column of headers">{{row[column]}}</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

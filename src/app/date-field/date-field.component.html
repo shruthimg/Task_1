@@ -1,0 +1,13 @@
+<div [formGroup]="parentForm">
+  <div formGroupName="dateField">
+    <input placeholder="{{dateFieldName}}" type="date" formControlName="dateField" class="form-control" required>
+  </div>
+
+  <div *ngIf="dateField.invalid && (dateField.dirty || dateField.touched)" class="alert alert-danger">
+
+    <div *ngIf="dateField.errors?.required">
+      {{dateField}} is required.
+    </div>
+
+  </div>
+</div>
