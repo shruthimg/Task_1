@@ -16,7 +16,7 @@ export class TextFieldComponent implements OnInit {
 
   ngOnInit() {
     this.textField = new FormGroup({
-      textField: new FormControl('', [Validators.required, Validators.minLength(4)])
+      textField: new FormControl('', [Validators.required])
     });
     this.parentForm.addControl('textField', this.textField);
   }

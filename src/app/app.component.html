@@ -19,28 +19,28 @@
   <div app-modal-body>
     <form [formGroup]="myForm" >
 
-      <div class="form-group">
+      <div class="form-grp">
         <label class="col-md-3">Name</label>
         <div class="col-md-8">
           <app-text-field [parentForm]="myForm" [textFieldName]="name"></app-text-field>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-grp">
         <label class="col-md-3">Date</label>
         <div class="col-md-8">
           <app-date-field [parentForm]="myForm" [dateFieldName]="date"></app-date-field>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-grp">
         <label class="col-md-3">Role</label>
         <div class="col-md-8">
           <app-reference-field [parentForm]="myForm" [groupName]="'role'" [refFieldName]="role"></app-reference-field>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-grp">
         <label class="col-md-3">Department</label>
         <div class="col-md-8">
           <app-reference-field [parentForm]="myForm" [groupName]="'dept'" [refFieldName]="dept"></app-reference-field>
@@ -51,10 +51,8 @@
   </div>
 
   <div app-modal-footer>
-    <div class="col-md-4">
+    <div >
       <app-button [type]=true [primary]=true [enabled]="myForm.invalid" (click)="onSubmit(myForm.value)"></app-button>
-    </div>
-    <div class="col-md-4">
       <app-button (click)="close()" [primary]=false></app-button>
     </div>
   </div>

@@ -19,7 +19,7 @@ export class ReferenceFieldComponent implements OnInit {
   ngOnInit() {
     this.formName = this.groupName + 'Field';
     this[this.formName] = this.fb.group({
-      refField : new FormControl('',[Validators.required, Validators.minLength(4)])
+      refField : new FormControl('', [Validators.required])
     });
 
     this.parentForm.addControl(this.formName, this[this.formName]);

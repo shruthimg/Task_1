@@ -1,11 +1,12 @@
 .blue {
   background-color: blue;
   color: white;
-  width: 50%;
+  width: 14%;
+  margin-right: 25px;
 }
 .white {
   color: blue;
   background-color: white;
-  width: 50%;
+
 }
 

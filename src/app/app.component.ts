@@ -23,7 +23,10 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-    this.empDetail = [formValue.textField.textField, formValue.dateField.dateField, formValue.roleForm.refField, formValue.deptForm.refField];
+    this.empDetail = [formValue.textField.textField,
+      formValue.dateField.dateField,
+      formValue.roleForm.refField,
+      formValue.deptForm.refField];
 
     localStorage.setItem('empDetails', this.empDetail);
     console.log(localStorage.getItem('empDetails'));
