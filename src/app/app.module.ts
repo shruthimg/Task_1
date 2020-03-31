@@ -12,6 +12,8 @@ import { ButtonComponent } from './button/button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
 import {ModalComponent} from './modal/modal.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {ModalComponent} from './modal/modal.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

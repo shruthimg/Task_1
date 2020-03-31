@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private sharedService: SharedService, private fb: FormBuilder) { }
   ngOnInit(): void {
     this.sharedService.sharedMessage.subscribe(message => this.flag = message);
-    this.myForm = this.fb.group({ });
+    this.myForm = this.fb.group({});
   }
 
   onSubmit(formValue) {

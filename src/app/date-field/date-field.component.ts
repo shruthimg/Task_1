@@ -11,12 +11,11 @@ export class DateFieldComponent implements OnInit {
   @Input() dateFieldName: string;
   dateField: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.dateField = new FormGroup({
-      dateField: new FormControl('', Validators.required)
+      datefield: new FormControl('', Validators.required)
     });
     this.parentForm.addControl('dateField', this.dateField);
   }

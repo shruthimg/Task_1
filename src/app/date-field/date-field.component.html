@@ -1,13 +1,18 @@
 <div [formGroup]="parentForm">
   <div formGroupName="dateField">
-    <input placeholder="{{dateFieldName}}" type="date" formControlName="dateField" class="form-control" required>
+    <input placeholder="{{dateFieldName}}"
+           type="text" bsDatepicker
+           formControlName="datefield"
+           class="form-control"
+           required>
   </div>
 
-  <!--<div *ngIf="dateField.invalid && (dateField.dirty || dateField.touched)" class="alert alert-danger">
+  <div *ngIf="dateField.controls.datefield.invalid && (dateField.controls.datefield.dirty || dateField.controls.datefield.touched)"
+       class="alert alert-danger">
 
-    <div *ngIf="dateField.errors?.required">
-      {{dateField}} is required.
+    <div *ngIf="dateField.controls.datefield.errors?.required">
+      {{dateFieldName}} is required.
     </div>
 
-  </div>-->
+  </div>
 </div>

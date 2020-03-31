@@ -13,15 +13,14 @@ export class ReferenceFieldComponent implements OnInit {
   refField: FormGroup;
   formName: string;
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.formName = this.groupName + 'Field';
-    this[this.formName] = this.fb.group({
-      refField : new FormControl('', [Validators.required])
+    this.refField = this[this.formName];
+    this.refField = new FormGroup({
+      reffield : new FormControl('', [Validators.required, Validators.minLength(4)])
     });
-
-    this.parentForm.addControl(this.formName, this[this.formName]);
+    this.parentForm.addControl(this.formName, this.refField);
   }
 }
