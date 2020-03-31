@@ -1,3 +1,6 @@
 .form-control {
   margin-bottom: 30px !important;
 }
+.glyphicon {
+  cursor: pointer;
+}

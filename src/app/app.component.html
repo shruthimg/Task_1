@@ -12,7 +12,7 @@
       <p>Add User</p>
     </div>
     <div class="col-md-1">
-      <span class="glyphicon glyphicon-remove" style="cursor: pointer" (click)="close()"></span>
+      <span class="glyphicon glyphicon-remove" (click)="close()"></span>
     </div>
   </div>
 
@@ -52,7 +52,7 @@
 
   <div app-modal-footer>
     <div >
-      <app-button [type]=true [primary]=true [enabled]="myForm.invalid" (click)="onSubmit(myForm.value)"></app-button>
+      <app-button [primary]=true [enabled]="myForm.invalid" (click)="onSubmit(myForm.value)"></app-button>
       <app-button (click)="close()" [primary]=false></app-button>
     </div>
   </div>
