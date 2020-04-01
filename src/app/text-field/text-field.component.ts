@@ -1,26 +1,45 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.css']
+  styleUrls: ['./text-field.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextFieldComponent),
+      multi: true
+    }
+  ]
 })
 export class TextFieldComponent implements ControlValueAccessor {
-
   @Input() textFieldName: string;
-  @Input() value: string;
+  @ViewChild('inputValue') input: ElementRef;
+  value: string;
+  disabled: boolean;
+  onChange: any = () => {};
+  onTouch: any = () => {};
 
-  constructor(private fb: FormBuilder) {
+  constructor() {}
+
+  writeValue(value: string) {
+    this.value = value;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any) {
+    this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
+    this.onTouch = fn;
   }
 
-  writeValue(obj: any): void {
+  onInput() {
+    this.value = this.input.nativeElement.value;
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 }

@@ -7,12 +7,12 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() headers: any[];
-  @Input() rows: any = [];
+  headers: any[];
+  rows: any;
 
   @Input() data: {
     header: {
-      rows: TableColumn[]
+      rows: TableRow[]
     },
     body: {
       rows: TableRow[]
@@ -22,8 +22,9 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.headers = this.data.header.rows;
+    this.rows = this.data.body.rows;
   }
-
 }
 
 export class TableRow {

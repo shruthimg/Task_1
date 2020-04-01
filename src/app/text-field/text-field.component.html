@@ -1,9 +1,11 @@
-
-
-  <div>
-    <input placeholder="{{textFieldName}}" type="text" value="{{value}}"  class="form-control" id="textfield">
+  <div class="form-group">
+    <input placeholder="{{textFieldName}}" type="text" #inputValue
+           (input)="onInput()"
+           (change)="onChange()"
+           (blur)="onTouch()"
+           [value]="value"
+           class="form-control"
+           id="textfield" >
   </div>
-
-
 
 
