@@ -1,19 +1,9 @@
-<div [formGroup]="parentForm">
 
-  <div formGroupName="textField">
-    <input placeholder="{{textFieldName}}" type="text" formControlName="textfield" class="form-control" id="textfield">
-  </div>
-  <div *ngIf="textField.controls.textfield.invalid && (textField.controls.textfield.dirty || textField.controls.textfield.touched)"
-       class="alert alert-danger">
 
-    <div *ngIf="textField.controls.textfield.errors?.required">
-      {{textFieldName}} is required.
-    </div>
-    <div *ngIf="textField.controls.textfield.errors?.minlength">
-      Name must be at least 4 characters long.
-    </div>
-
+  <div>
+    <input placeholder="{{textFieldName}}" type="text" value="{{value}}"  class="form-control" id="textfield">
   </div>
 
-</div>
+
+
 

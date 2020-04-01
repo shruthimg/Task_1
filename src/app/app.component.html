@@ -1,6 +1,5 @@
 <!-- Header Component-->
 <app-header></app-header>
-<hr>
 
 <!-- Main Component-->
 <app-main></app-main>
@@ -17,12 +16,23 @@
   </div>
 
   <div app-modal-body>
-    <form [formGroup]="myForm" >
+    <form [formGroup]="myForm" novalidate>
 
-      <div class="form-grp">
+      <div class="form-group">
         <label class="col-md-3">Name</label>
         <div class="col-md-8">
-          <app-text-field [parentForm]="myForm" [textFieldName]="name"></app-text-field>
+          <app-text-field [value]="" formControlName="name" [textFieldName]="name"></app-text-field>
+        </div>
+        <div *ngIf="myForm.controls.name.invalid && (myForm.controls.name.dirty || myForm.controls.name.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="myForm.controls.name.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="myForm.controls.name.errors?.minlength">
+            Name must be at least 4 characters long.
+          </div>
+
         </div>
       </div>
 
