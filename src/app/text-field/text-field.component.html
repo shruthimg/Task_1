@@ -1,9 +1,7 @@
   <div class="form-group">
     <input placeholder="{{textFieldName}}" type="text" #inputValue
            (input)="onInput()"
-           (change)="onChange()"
-           (blur)="onTouch()"
-           [value]="value"
+           (blur)="onChange($event, inputValue.value)"
            class="form-control"
            id="textfield" >
   </div>

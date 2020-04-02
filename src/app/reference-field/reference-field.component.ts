@@ -1,5 +1,5 @@
-import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-reference-field',
@@ -13,30 +13,62 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
     }
   ]
 })
-export class ReferenceFieldComponent implements ControlValueAccessor {
+export class ReferenceFieldComponent implements ControlValueAccessor, AfterViewInit {
   @Input() refFieldName: string;
+  @Input() parentForm: FormGroup;
   @ViewChild('inputValue') input: ElementRef;
-  value: string;
+  innerValue: any;
   disabled: boolean;
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  propagateChange = (_: any) => { };
 
   constructor() {}
 
+  ngAfterViewInit() {
+    this.parentForm.controls.department.valueChanges.subscribe(
+    () => {
+    const dept = this.parentForm.controls.department.value;
+    if (dept  === '' || dept === null || dept === undefined ) {
+          this.innerValue = '';
+          this.input.nativeElement.value = '';
+        }
+      }
+    );
+    this.parentForm.controls.jobrole.valueChanges.subscribe(
+      () => {
+        const role = this.parentForm.controls.jobrole.value;
+        if (role  === '' || role === null || role === undefined ) {
+          this.innerValue = '';
+          this.input.nativeElement.value = '';
+        }
+      }
+    );
+  }
+  get value(): any {
+    return this.innerValue;
+  }
+
+  set value(value: any) {
+    if (value !== this.innerValue) {
+      this.innerValue = value;
+    }
+  }
   writeValue(value: string) {
-    this.value = value ? value : '';
+    this.innerValue = value;
+  }
+  onChange(e: Event, value: any) {
+    this.innerValue = value;
+    this.propagateChange(this.innerValue);
   }
 
   registerOnChange(fn: any) {
-    this.onChange = fn;
+    this.propagateChange = fn;
   }
 
   registerOnTouched(fn: any) {
-    this.onTouch = fn;
   }
 
   onInput() {
-    this.value = this.input.nativeElement.value;
+    console.log('Input value', this.input.nativeElement.value);
   }
 
   setDisabledState(isDisabled: boolean): void {

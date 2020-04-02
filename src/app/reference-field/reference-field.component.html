@@ -2,7 +2,6 @@
     <input placeholder="{{refFieldName}}" type="text" class="form-control"
            #inputValue
            (input)="onInput()"
-           (change)="onChange()"
-           (blur)="onTouch()"
-           [value]="value">
+           (blur)="onChange($event, inputValue.value)"
+           id="reffield">
   </div>
