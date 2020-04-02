@@ -65,4 +65,10 @@ export class DateFieldComponent implements ControlValueAccessor, AfterViewInit {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
+  dateChanged = (e: Date): void => {
+    if (e) {
+      this.propagateChange(e);
+    }
+  }
 }
