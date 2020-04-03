@@ -27,7 +27,8 @@ export class ReferenceFieldComponent implements ControlValueAccessor, AfterViewI
     this.parentForm.controls.department.valueChanges.subscribe(
     () => {
     const dept = this.parentForm.controls.department.value;
-    if (dept  === '' || dept === null || dept === undefined ) {
+    const role = this.parentForm.controls.jobrole.value;
+    if ((dept  === '' || dept === null || dept === undefined) && (role  === '' || role === null || role === undefined )) {
           this.innerValue = '';
           this.input.nativeElement.value = '';
         }
@@ -35,8 +36,9 @@ export class ReferenceFieldComponent implements ControlValueAccessor, AfterViewI
     );
     this.parentForm.controls.jobrole.valueChanges.subscribe(
       () => {
+        const dept = this.parentForm.controls.department.value;
         const role = this.parentForm.controls.jobrole.value;
-        if (role  === '' || role === null || role === undefined ) {
+        if ((dept  === '' || dept === null || dept === undefined) && (role  === '' || role === null || role === undefined )) {
           this.innerValue = '';
           this.input.nativeElement.value = '';
         }
