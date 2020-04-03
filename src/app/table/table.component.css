@@ -19,6 +19,18 @@
   border:1px solid  #ccc;
   height: 30px;
 }
+.name {
+  width: 130px;
+}
+.date {
+  width: 120px;
+}
+.role {
+  width: 150px;
+}
+.department {
+  width: 220px;
+}
 .table-row.header {
   height: 30px;
   font-size: 18px;

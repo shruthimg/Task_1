@@ -3,13 +3,15 @@
 
     <div class="table">
       <div class="table-row header">
-        <div class="table-col " *ngFor="let column of headers">{{column}}
+        <div class="table-col " *ngFor="let column of headers"
+        [ngClass]="[column.name === column.name ? column.styleClass : 'header' ]" >{{column.name}}
         </div>
       </div>
 
       <div >
         <div class="table-row" *ngFor="let row of rows">
-          <div class="table-col" *ngFor="let column of headers">{{row[column]}}</div>
+          <div class="table-col" *ngFor="let column of headers"
+          [ngClass]="[column.name === column.name ? column.styleClass : 'table-col' ]" >{{row[column.name]}}</div>
         </div>
       </div>
 

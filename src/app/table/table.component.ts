@@ -17,12 +17,12 @@ export class TableComponent implements OnInit {
     body: {
       rows: TableRow[]
     }
-  }
+  };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.headers = this.data.header.rows;
+    this.headers = this.data.header.rows[0].columns;
     this.rows = this.data.body.rows;
   }
 }

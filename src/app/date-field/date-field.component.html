@@ -5,6 +5,8 @@
            #inputValue
            (input)="onInput()"
            (blur)="onChange($event, inputValue.value)"
-           (bsValueChange)="dateChanged($event)">
+           (bsValueChange)="dateChanged($event)"
+           [bsConfig]="datePickerConfig"
+            placement="bottom">
   </div>
 

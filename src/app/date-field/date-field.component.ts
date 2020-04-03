@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
 import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {BsDatepickerConfig} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-date-field',
@@ -14,14 +15,33 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
   ]
 })
 export class DateFieldComponent implements ControlValueAccessor, AfterViewInit {
+
+  constructor() {
+    this.datePickerConfig = Object.assign({},
+      {
+        containerClass: 'theme-dark-blue',
+        showWeekNumbers: false,
+        minDate: new Date(1993, 0, 1),
+        maxDate: new Date(),
+        dateInputFormat: 'DD-MM-YYYY'
+      });
+  }
+  get value(): any {
+    return this.innerValue;
+  }
+
+  set value(value: any) {
+    if (value !== this.innerValue) {
+      this.innerValue = value;
+    }
+  }
   @Input() dateFieldName: string;
   @Input() parentForm: FormGroup;
   @ViewChild('inputValue') input: ElementRef;
   innerValue: any;
   disabled: boolean;
+  datePickerConfig: Partial<BsDatepickerConfig>;
   propagateChange = (_: any) => { };
-
-  constructor() {}
 
   ngAfterViewInit() {
     this.parentForm.controls.startdate.valueChanges.subscribe(
@@ -33,15 +53,6 @@ export class DateFieldComponent implements ControlValueAccessor, AfterViewInit {
         }
       }
     );
-  }
-  get value(): any {
-    return this.innerValue;
-  }
-
-  set value(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-    }
   }
   writeValue(value: string) {
     this.innerValue = value;
