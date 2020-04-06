@@ -3,17 +3,19 @@
 
     <div class="table">
       <div class="table-row header">
-        <div class="table-col " *ngFor="let column of headers"
-        [ngClass]="[column.name === column.name ? column.styleClass : 'header' ]" >{{column.name}}
+        <div contenteditable="true" class="table-col " *ngFor="let column of headers"
+             [ngClass]="[column.name === column.name ? column.styleClass : 'header' ]" >{{column.name}}
         </div>
       </div>
 
-      <div >
-        <div class="table-row" *ngFor="let row of rows">
-          <div class="table-col" *ngFor="let column of headers"
-          [ngClass]="[column.name === column.name ? column.styleClass : 'table-col' ]" >{{row[column.name]}}</div>
+        <div class="table-row" *ngFor="let row of rows;let i = index">
+          <div contenteditable="true" class="table-col" *ngFor="let column of headers"
+            (blur)="updateList(i, column.name, $event)" (click)="column.name === 'Start Date' ? flag= true : flag=false"
+            [ngClass]="[column.name === column.name ? column.styleClass : 'table-col' ]" >
+            <div *ngIf="flag" bsDatepicker></div>
+            {{row[column.name]}}
+          </div>
         </div>
-      </div>
 
     </div>
   </div>

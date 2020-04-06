@@ -15,12 +15,6 @@ import {BsDatepickerConfig} from 'ngx-bootstrap';
   ]
 })
 export class DateFieldComponent implements ControlValueAccessor {
-  @Input() dateFieldName: string;
-  @ViewChild('inputValue') input: ElementRef;
-  innerValue: any;
-  disabled: boolean;
-  datePickerConfig: Partial<BsDatepickerConfig>;
-  propagateChange = (_: any) => { };
 
   constructor() {
     this.datePickerConfig = Object.assign({},
@@ -41,6 +35,12 @@ export class DateFieldComponent implements ControlValueAccessor {
       this.innerValue = value;
     }
   }
+  @Input() dateFieldName: string;
+  @ViewChild('inputValue') input: ElementRef;
+  innerValue: any;
+  disabled: boolean;
+  datePickerConfig: Partial<BsDatepickerConfig>;
+  propagateChange = (_: any) => { };
 
   writeValue(value: string) {
     this.innerValue = value;
