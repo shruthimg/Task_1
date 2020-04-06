@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {BsDatepickerConfig} from 'ngx-bootstrap';
 
 @Component({
@@ -14,7 +14,13 @@ import {BsDatepickerConfig} from 'ngx-bootstrap';
     }
   ]
 })
-export class DateFieldComponent implements ControlValueAccessor, AfterViewInit {
+export class DateFieldComponent implements ControlValueAccessor {
+  @Input() dateFieldName: string;
+  @ViewChild('inputValue') input: ElementRef;
+  innerValue: any;
+  disabled: boolean;
+  datePickerConfig: Partial<BsDatepickerConfig>;
+  propagateChange = (_: any) => { };
 
   constructor() {
     this.datePickerConfig = Object.assign({},
@@ -35,25 +41,7 @@ export class DateFieldComponent implements ControlValueAccessor, AfterViewInit {
       this.innerValue = value;
     }
   }
-  @Input() dateFieldName: string;
-  @Input() parentForm: FormGroup;
-  @ViewChild('inputValue') input: ElementRef;
-  innerValue: any;
-  disabled: boolean;
-  datePickerConfig: Partial<BsDatepickerConfig>;
-  propagateChange = (_: any) => { };
 
-  ngAfterViewInit() {
-    this.parentForm.controls.startdate.valueChanges.subscribe(
-      () => {
-        if (this.parentForm.controls.startdate.value === '' || this.parentForm.controls.startdate.value === null ||
-          this.parentForm.controls.startdate.value === undefined) {
-          this.innerValue = '';
-          this.input.nativeElement.value = '';
-        }
-      }
-    );
-  }
   writeValue(value: string) {
     this.innerValue = value;
   }

@@ -3,6 +3,7 @@
            type="text" bsDatepicker
            class="form-control"
            #inputValue
+           value="{{innerValue}}"
            (input)="onInput()"
            (blur)="onChange($event, inputValue.value)"
            (bsValueChange)="dateChanged($event)"

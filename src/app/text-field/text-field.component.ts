@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnChanges, ViewChild} from '@angular/core';
-import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {
+  ControlValueAccessor, NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 @Component({
   selector: 'app-text-field',
@@ -13,8 +15,7 @@ import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/for
     }
   ]
 })
-export class TextFieldComponent implements ControlValueAccessor, AfterViewInit {
-  @Input() parentForm: FormGroup;
+export class TextFieldComponent implements ControlValueAccessor {
   @Input() textFieldName: string;
   @ViewChild('inputValue') input: ElementRef;
   innerValue: any;
@@ -23,17 +24,6 @@ export class TextFieldComponent implements ControlValueAccessor, AfterViewInit {
 
   constructor() {}
 
-  ngAfterViewInit() {
-    this.parentForm.controls.firstname.valueChanges.subscribe(
-      () => {
-        if (this.parentForm.controls.firstname.value === '' || this.parentForm.controls.firstname.value === null ||
-          this.parentForm.controls.firstname.value === undefined) {
-          this.innerValue = '';
-          this.input.nativeElement.value = '';
-        }
-      }
-    );
-  }
   get value(): any {
     return this.innerValue;
   }
@@ -44,7 +34,7 @@ export class TextFieldComponent implements ControlValueAccessor, AfterViewInit {
     }
   }
   writeValue(value: string) {
-    this.innerValue = value;
+    this.innerValue = value ? value : '';
   }
   onChange(e: Event, value: any) {
     this.innerValue = value;

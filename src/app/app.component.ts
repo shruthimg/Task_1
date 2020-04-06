@@ -1,7 +1,6 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SharedService} from './shared.service';
-import {FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
-import {TextFieldComponent} from './text-field/text-field.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',

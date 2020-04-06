@@ -19,7 +19,7 @@
     <form [formGroup]="myForm">
         <label class="col-md-3">Name</label>
           <div class="col-md-8">
-            <app-text-field [parentForm]="myForm" formControlName="firstname" required [textFieldName]="name"></app-text-field>
+            <app-text-field formControlName="firstname" required [textFieldName]="name"></app-text-field>
 
             <div *ngIf="myForm.controls.firstname.invalid && (myForm.controls.firstname.dirty || myForm.controls.firstname.touched)"
                  class="alert alert-danger">
@@ -36,7 +36,7 @@
 
           <label class="col-md-3">Date</label>
           <div class="col-md-8">
-            <app-date-field [parentForm]="myForm"  formControlName="startdate" [dateFieldName]="date"></app-date-field>
+            <app-date-field formControlName="startdate" [dateFieldName]="date"></app-date-field>
             <div *ngIf="myForm.controls.startdate.invalid && (myForm.controls.startdate.dirty || myForm.controls.startdate.touched)"
                  class="alert alert-danger">
 
@@ -49,7 +49,7 @@
 
           <label class="col-md-3">Role</label>
           <div class="col-md-8">
-            <app-reference-field [parentForm]="myForm" formControlName="jobrole" [refFieldName]="role"></app-reference-field>
+            <app-reference-field formControlName="jobrole" [refFieldName]="role"></app-reference-field>
             <div *ngIf="myForm.controls.jobrole.invalid && (myForm.controls.jobrole.dirty || myForm.controls.jobrole.touched)"
                  class="alert alert-danger">
 
@@ -65,7 +65,7 @@
 
           <label class="col-md-3">Department</label>
           <div class="col-md-8">
-            <app-reference-field [parentForm]="myForm" formControlName="department" [refFieldName]="dept"></app-reference-field>
+            <app-reference-field formControlName="department" [refFieldName]="dept"></app-reference-field>
             <div *ngIf="myForm.controls.department.invalid && (myForm.controls.department.dirty || myForm.controls.department.touched)"
                  class="alert alert-danger">
 

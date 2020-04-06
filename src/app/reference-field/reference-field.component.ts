@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-reference-field',
@@ -13,9 +13,8 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
     }
   ]
 })
-export class ReferenceFieldComponent implements ControlValueAccessor, AfterViewInit {
+export class ReferenceFieldComponent implements ControlValueAccessor {
   @Input() refFieldName: string;
-  @Input() parentForm: FormGroup;
   @ViewChild('inputValue') input: ElementRef;
   innerValue: any;
   disabled: boolean;
@@ -23,28 +22,6 @@ export class ReferenceFieldComponent implements ControlValueAccessor, AfterViewI
 
   constructor() {}
 
-  ngAfterViewInit() {
-    this.parentForm.controls.department.valueChanges.subscribe(
-    () => {
-    const dept = this.parentForm.controls.department.value;
-    const role = this.parentForm.controls.jobrole.value;
-    if ((dept  === '' || dept === null || dept === undefined) && (role  === '' || role === null || role === undefined )) {
-          this.innerValue = '';
-          this.input.nativeElement.value = '';
-        }
-      }
-    );
-    this.parentForm.controls.jobrole.valueChanges.subscribe(
-      () => {
-        const dept = this.parentForm.controls.department.value;
-        const role = this.parentForm.controls.jobrole.value;
-        if ((dept  === '' || dept === null || dept === undefined) && (role  === '' || role === null || role === undefined )) {
-          this.innerValue = '';
-          this.input.nativeElement.value = '';
-        }
-      }
-    );
-  }
   get value(): any {
     return this.innerValue;
   }
