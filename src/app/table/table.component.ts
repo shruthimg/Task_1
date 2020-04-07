@@ -1,4 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {SharedService} from '../shared.service';
 
 
 @Component({
@@ -18,7 +19,10 @@ export class TableComponent implements OnInit, OnDestroy {
       rows: TableRow[]
     }
   };
-  flag: boolean;
+  editName: boolean;
+  editDate: boolean;
+  editRole: boolean;
+  editDept: boolean;
 
   constructor() { }
 

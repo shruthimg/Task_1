@@ -1,13 +1,14 @@
-  <div class="form-group">
-    <input placeholder="{{dateFieldName}}"
-           type="text" bsDatepicker
-           class="form-control"
-           #inputValue
-           value="{{innerValue}}"
-           (input)="onInput()"
-           (blur)="onChange($event, inputValue.value)"
-           (bsValueChange)="dateChanged($event)"
-           [bsConfig]="datePickerConfig"
-           placement="bottom">
-  </div>
+    <mat-form-field class="full-width">
+      <mat-label>{{dateFieldName}}</mat-label>
+      <input matInput placeholder="{{dateFieldName}}"
+             type="text" bsDatepicker
+             class="form-control"
+             #inputValue
+             value="{{innerValue}}"
+             (input)="onInput()"
+             (blur)="onChange($event, inputValue.value)"
+             (bsValueChange)="dateChanged($event)"
+             [bsConfig]="datePickerConfig"
+             placement="bottom">
+    </mat-form-field>
 

@@ -1,4 +1,9 @@
-
+.full-width {
+  width: 100%;
+}
+.caption {
+  margin-top: 15px;
+}
 .glyphicon {
   cursor: pointer;
 }

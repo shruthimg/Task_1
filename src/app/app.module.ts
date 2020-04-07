@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {forwardRef, NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { TextFieldComponent } from './text-field/text-field.component';
@@ -14,6 +14,9 @@ import { TableComponent } from './table/table.component';
 import {ModalComponent} from './modal/modal.component';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -33,11 +36,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

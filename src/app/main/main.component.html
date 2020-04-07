@@ -2,7 +2,21 @@
   <div class="col-md-2"></div>
   <div class="col-md-8" >
     <h4>Employee Details</h4>
-    <app-table [data]="data"></app-table>
+    <app-table [data]="data">
+      <div app-table-header>
+        <form [formGroup]="myForm">
+          <div *ngIf="column === 'Name'" >
+            <app-text-field formControlName="firstname" required ></app-text-field>
+          </div>
+
+          <app-date-field *ngIf="column === 'Start Date'" formControlName="startdate" ></app-date-field>
+          <app-reference-field *ngIf="column === 'Job Role'" formControlName="jobrole" ></app-reference-field>
+          <app-reference-field *ngIf="column === 'Department'" formControlName="department" ></app-reference-field>
+        </form>
+      </div>
+      <div app-table-body>
+      </div>
+    </app-table>
   </div>
   <div class="col-md-2"></div>
 </div>

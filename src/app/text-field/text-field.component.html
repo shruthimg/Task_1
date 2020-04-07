@@ -1,10 +1,9 @@
-  <div class="form-group">
-    <input placeholder="{{textFieldName}}" type="text" #inputValue
-           (input)="onInput()"
-           (blur)="onChange($event, inputValue.value)"
-           class="form-control"
-           id="textfield"
-           value="{{innerValue}}" >
-  </div>
-
+    <mat-form-field class="full-width">
+      <mat-label>{{textFieldName}}</mat-label>
+      <input matInput placeholder="{{textFieldName}}" type="text" #inputValue
+             (input)="onInput()"
+             (blur)="onChange($event, inputValue.value)"
+             class="form-control"
+             value="{{innerValue}}" >
+    </mat-form-field>
 

@@ -1,5 +1,5 @@
 import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-reference-field',
@@ -14,14 +14,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   ]
 })
 export class ReferenceFieldComponent implements ControlValueAccessor {
-  @Input() refFieldName: string;
-  @ViewChild('inputValue') input: ElementRef;
-  innerValue: any;
-  disabled: boolean;
-  propagateChange = (_: any) => { };
-
-  constructor() {}
-
   get value(): any {
     return this.innerValue;
   }
@@ -31,6 +23,15 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
       this.innerValue = value;
     }
   }
+  @Input() refFieldName: string;
+  @Input() filteredOptions: any;
+  @Input() refControl: FormControl;
+  @ViewChild('inputValue') input: ElementRef;
+  innerValue: any;
+  disabled: boolean;
+
+  constructor() {}
+  propagateChange = (_: any) => { };
   writeValue(value: string) {
     this.innerValue = value;
   }

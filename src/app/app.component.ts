@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedService} from './shared.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,9 @@ export class AppComponent implements OnInit {
   dept = 'Department';
   empDetail: any;
   myForm: FormGroup;
+  options: string[] = ['One', 'Two', 'Three'];
+  jobRoleOptions: Observable<any>;
+  deptOptions: Observable<any>;
 
   constructor(private sharedService: SharedService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -26,6 +31,17 @@ export class AppComponent implements OnInit {
       jobrole: ['', [Validators.required, Validators.minLength(4)]],
       department: ['', [Validators.required, Validators.minLength(4)]]
     });
+
+    this.jobRoleOptions = this.myForm.controls.jobrole.valueChanges
+      .pipe(debounceTime(200), distinctUntilChanged(),
+        startWith(''),
+        map(value => this.options.filter(option => option.toLowerCase().includes(value)))
+      );
+    this.deptOptions = this.myForm.controls.department.valueChanges
+      .pipe(debounceTime(200), distinctUntilChanged(),
+        startWith(''),
+        map(value => this.options.filter(option => option.toLowerCase().includes(value)))
+      );
   }
 
   onSubmit(formValue) {

@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -6,7 +7,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
- constructor() { }
+  myForm: FormGroup;
+  @Input() column: any;
+ constructor(private fb: FormBuilder) { }
  data = {
    header: {
      rows: [{
@@ -40,5 +43,12 @@ export class MainComponent implements OnInit {
      ]
    }
  };
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.myForm = this.fb.group({
+      firstname: ['', [Validators.required, Validators.minLength(4)]],
+      startdate: ['', [Validators.required]],
+      jobrole: ['', [Validators.required, Validators.minLength(4)]],
+      department: ['', [Validators.required, Validators.minLength(4)]]
+    });
+  }
 }
