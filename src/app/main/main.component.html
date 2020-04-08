@@ -3,19 +3,37 @@
   <div class="col-md-8" >
     <h4>Employee Details</h4>
     <app-table [data]="data">
-      <div app-table-header>
-        <form [formGroup]="myForm">
-          <div *ngIf="column === 'Name'" >
-            <app-text-field formControlName="firstname" required ></app-text-field>
-          </div>
 
-          <app-date-field *ngIf="column === 'Start Date'" formControlName="startdate" ></app-date-field>
-          <app-reference-field *ngIf="column === 'Job Role'" formControlName="jobrole" ></app-reference-field>
-          <app-reference-field *ngIf="column === 'Department'" formControlName="department" ></app-reference-field>
+      <div app-table-name>
+        <form [formGroup]="myForm">
+          <div class="fieldControl">
+            <app-text-field formControlName="firstname" (blur)="Onblur()"></app-text-field>
+          </div>
         </form>
       </div>
-      <div app-table-body>
-      </div>
+
+        <div app-table-date>
+          <form [formGroup]="myForm">
+          <div class="fieldControl">
+            <app-date-field formControlName="startdate" ></app-date-field>
+          </div>
+          </form>
+        </div>
+        <div app-table-role>
+          <form [formGroup]="myForm">
+          <div class="fieldControl">
+            <app-reference-field [refControl]="myForm.controls.jobrole" [filteredOptions]="jobRoleOptions" formControlName="jobrole" ></app-reference-field>
+          </div>
+          </form>
+        </div>
+        <div app-table-dept>
+          <form [formGroup]="myForm">
+          <div class="fieldControl">
+            <app-reference-field [refControl]="myForm.controls.department" [filteredOptions]="deptOptions" formControlName="department" ></app-reference-field>
+          </div>
+          </form>
+        </div>
+
     </app-table>
   </div>
   <div class="col-md-2"></div>

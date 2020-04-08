@@ -1,6 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {SharedService} from '../shared.service';
-
 
 @Component({
   selector: 'app-table',
@@ -11,6 +9,7 @@ export class TableComponent implements OnInit, OnDestroy {
   headers: any[];
   rows: any;
   newList: Array<any> = [];
+  editRowId: number;
   @Input() data: {
     header: {
       rows: TableRow[]
@@ -19,12 +18,9 @@ export class TableComponent implements OnInit, OnDestroy {
       rows: TableRow[]
     }
   };
-  editName: boolean;
-  editDate: boolean;
-  editRole: boolean;
-  editDept: boolean;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.headers = this.data.header.rows[0].columns;
@@ -40,6 +36,11 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.newList = [];
   }
+
+  edit(id: number) {
+    this.editRowId = id;
+  }
+
 }
 
 export class TableRow {

@@ -1,51 +1,38 @@
-<div class="row">
-  <div class="col-md-8" >
-
-    <div class="table">
-
-      <div class="table-row header">
-        <div class="table-col " *ngFor="let column of headers"
-             [ngClass]="[column.name === column.name ? column.styleClass : 'header' ]"
-             >
-          <div (click)="column.name === 'Name' ? editName=true : editName=false" *ngIf="column.name === 'Name'">
-            <ng-container *ngIf="!editName">
-              {{column.name}}
-            </ng-container>
-            <ng-content *ngIf="editName" select=[app-table-header]></ng-content>
-          </div>
-          <div (click)="column.name === 'Start Date' ? editDate=true : editDate=false" *ngIf="column.name === 'Start Date'">
-            <ng-container *ngIf="!editDate">
-              {{column.name}}
-            </ng-container>
-            <ng-content [column]="column.name"  *ngIf="editDate" select=[app-table-header]></ng-content>
-          </div>
-          <div (click)="column.name === 'Job Role' ? editRole=true : editRole=false" *ngIf="column.name === 'Job Role'">
-            <ng-container *ngIf="!editRole">
-              {{column.name}}
-            </ng-container>
-            <ng-content [column]="column.name"  *ngIf="editRole" select=[app-table-header]></ng-content>
-          </div>
-          <div (click)="column.name === 'Department' ? editDept=true : editDept=false" *ngIf="column.name === 'Department'">
-            <ng-container *ngIf="!editDept">
-              {{column.name}}
-            </ng-container>
-            <ng-content [column]="column.name"  *ngIf="editDept" select=[app-table-header]></ng-content>
-          </div>
-
+<div class="row scroll">
+  <div class="resp-table">
+    <div id="resp-table-header">
+      <div class="resp-table-row">
+        <div class="table-header-cell" *ngFor="let column of headers">
+          {{column.name}}
         </div>
-
       </div>
+    </div>
 
-      <div class="table-row" *ngFor="let row of rows;let i = index">
-        <div class="table-col" *ngFor="let column of headers"
-             (blur)="updateList(i, column.name, $event)"
-             [ngClass]="[column.name === column.name ? column.styleClass : 'table-col' ]" >
-          <ng-content select=[app-table-body]></ng-content>
-          {{row[column.name]}}
+    <div id="resp-table-body">
+      <div class="resp-table-row" *ngFor="let row of rows;let i = index">
+
+        <div *ngIf="editRowId === row.id && headers[0].name === 'Name'" class="table-body-cell">
+          <ng-content select=[app-table-name]></ng-content>
         </div>
+        <div *ngIf="editRowId !== row.id" class="table-body-cell" (click)="edit(row.id)">{{row.Name}}</div>
 
+        <div *ngIf="editRowId === row.id && headers[1].name === 'Start Date'" class="table-body-cell">
+          <ng-content select=[app-table-date]></ng-content>
+        </div>
+        <div *ngIf="editRowId !== row.id" (click)="edit(row.id)" class="table-body-cell">{{row.Start_Date}}</div>
+
+        <div *ngIf="editRowId === row.id && headers[2].name === 'Job Role'" class="table-body-cell">
+          <ng-content select=[app-table-role]></ng-content>
+        </div>
+        <div *ngIf="editRowId !== row.id" (click)="edit(row.id)" class="table-body-cell">{{row.Job_Role}}</div>
+
+        <div *ngIf="editRowId === row.id && headers[3].name === 'Department'" class="table-body-cell">
+          <ng-content select=[app-table-dept]></ng-content>
+        </div>
+        <div *ngIf="editRowId !== row.id" (click)="edit(row.id)" class="table-body-cell">{{row.Department}}</div>
       </div>
 
     </div>
+
   </div>
 </div>
