@@ -1,4 +1,4 @@
-import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, forwardRef, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -27,6 +27,7 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
   @Input() filteredOptions: any;
   @Input() refControl: FormControl;
   @ViewChild('inputValue') input: ElementRef;
+  @Output() messageEvent = new EventEmitter<any>();
   innerValue: any;
   disabled: boolean;
 
@@ -54,4 +55,8 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
+   sendMessage(e: Event) {
+        this.messageEvent.emit(e);
+      }
 }

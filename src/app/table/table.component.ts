@@ -6,10 +6,11 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, OnDestroy {
+  enableEdit = false;
+  enableEditIndex = null;
   headers: any[];
   rows: any;
   newList: Array<any> = [];
-  editRowId: number;
   @Input() data: {
     header: {
       rows: TableRow[]
@@ -26,7 +27,11 @@ export class TableComponent implements OnInit, OnDestroy {
     this.headers = this.data.header.rows[0].columns;
     this.rows = this.data.body.rows;
   }
-
+  enableEditMethod(e, i) {
+      this.enableEdit = true;
+      this.enableEditIndex = i;
+      console.log(i, e);
+    }
   updateList(i: number, name: any, event: any) {
     this.rows[i][name] = event.target.textContent;
     this.newList.push(this.rows);
@@ -36,11 +41,6 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.newList = [];
   }
-
-  edit(id: number) {
-    this.editRowId = id;
-  }
-
 }
 
 export class TableRow {

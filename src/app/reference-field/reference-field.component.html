@@ -4,6 +4,7 @@
              matInput #inputValue
              (input)="onInput()"
              (blur)="onChange($event, inputValue.value)"
+             (blur)="sendMessage($event)"
              value="{{innerValue}}"
              [formControl]="refControl"
              [matAutocomplete]="auto" >

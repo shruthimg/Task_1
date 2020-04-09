@@ -10,7 +10,6 @@ import {Observable} from 'rxjs';
 })
 export class MainComponent implements OnInit {
   myForm: FormGroup;
-  @Input() column: any;
   jobRoleOptions: Observable<any>;
   deptOptions: Observable<any>;
   roles: string[] = ['tester', 'developer', 'Business analyst'];
@@ -28,9 +27,9 @@ export class MainComponent implements OnInit {
    },
    body: {
      rows: [
-       {id: 1, Name : 'Andy', Start_Date : '10/01/2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 2, Name : 'Ålex', Start_Date : '11/01/2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 3, Name : 'Boby', Start_Date : '12/01/2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {id: 1, Name : 'Andy', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {id: 2, Name : 'Ålex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {id: 3, Name : 'Boby', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
        {id: 4, Name : 'Bella', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
        {id: 5, Name : 'Bex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
        {id: 6, Name : 'Andrew', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
@@ -67,9 +66,5 @@ export class MainComponent implements OnInit {
         startWith(''),
         map(value => this.dept.filter(option => option.toLowerCase().includes(value)))
       );
-  }
-
-  Onblur() {
-
   }
 }

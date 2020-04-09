@@ -3,6 +3,7 @@
       <input matInput placeholder="{{textFieldName}}" type="text" #inputValue
              (input)="onInput()"
              (blur)="onChange($event, inputValue.value)"
+             (blur)="sendMessage($event)"
              class="form-control"
              value="{{innerValue}}" >
     </mat-form-field>

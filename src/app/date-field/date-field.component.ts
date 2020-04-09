@@ -1,4 +1,4 @@
-import {Component, ElementRef, forwardRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, forwardRef, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {BsDatepickerConfig} from 'ngx-bootstrap';
 
@@ -37,6 +37,7 @@ export class DateFieldComponent implements ControlValueAccessor {
   }
   @Input() dateFieldName: string;
   @ViewChild('inputValue') input: ElementRef;
+  @Output() messageEvent = new EventEmitter<any>();
   innerValue: any;
   disabled: boolean;
   datePickerConfig: Partial<BsDatepickerConfig>;
@@ -70,4 +71,8 @@ export class DateFieldComponent implements ControlValueAccessor {
       this.propagateChange(e);
     }
   }
+
+  sendMessage(e: Event) {
+          this.messageEvent.emit(e);
+        }
 }

@@ -11,10 +11,6 @@ import {debounceTime, distinctUntilChanged, map, startWith} from 'rxjs/operators
 })
 export class AppComponent implements OnInit {
   public flag: boolean;
-  name = 'Name';
-  date = 'Start date';
-  role = 'Job role';
-  dept = 'Department';
   empDetail: any;
   myForm: FormGroup;
   options: string[] = ['One', 'Two', 'Three'];

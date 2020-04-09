@@ -1,38 +1,34 @@
 <div class="row">
   <div class="col-md-2"></div>
-  <div class="col-md-8" >
+  <div class="col-md-8">
     <h4>Employee Details</h4>
     <app-table [data]="data">
 
       <div app-table-name>
         <form [formGroup]="myForm">
-          <div class="fieldControl">
-            <app-text-field formControlName="firstname" (blur)="Onblur()"></app-text-field>
-          </div>
+          <app-text-field formControlName="firstname"></app-text-field>
         </form>
       </div>
 
-        <div app-table-date>
-          <form [formGroup]="myForm">
-          <div class="fieldControl">
-            <app-date-field formControlName="startdate" ></app-date-field>
-          </div>
-          </form>
-        </div>
-        <div app-table-role>
-          <form [formGroup]="myForm">
-          <div class="fieldControl">
-            <app-reference-field [refControl]="myForm.controls.jobrole" [filteredOptions]="jobRoleOptions" formControlName="jobrole" ></app-reference-field>
-          </div>
-          </form>
-        </div>
-        <div app-table-dept>
-          <form [formGroup]="myForm">
-          <div class="fieldControl">
-            <app-reference-field [refControl]="myForm.controls.department" [filteredOptions]="deptOptions" formControlName="department" ></app-reference-field>
-          </div>
-          </form>
-        </div>
+      <div app-table-date>
+        <form [formGroup]="myForm">
+          <app-date-field formControlName="startdate"></app-date-field>
+        </form>
+      </div>
+
+      <div app-table-role>
+        <form [formGroup]="myForm">
+          <app-reference-field [refControl]="myForm.controls.jobrole"
+                               [filteredOptions]="jobRoleOptions" formControlName="jobrole"></app-reference-field>
+        </form>
+      </div>
+
+      <div app-table-dept>
+        <form [formGroup]="myForm">
+          <app-reference-field [refControl]="myForm.controls.department"
+                               [filteredOptions]="deptOptions" formControlName="department"></app-reference-field>
+        </form>
+      </div>
 
     </app-table>
   </div>
