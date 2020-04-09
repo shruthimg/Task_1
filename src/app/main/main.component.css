@@ -1,1 +1,6 @@
-
+.button {
+  height: -webkit-fill-available;
+  margin-left: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

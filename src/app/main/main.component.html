@@ -30,7 +30,13 @@
         </form>
       </div>
 
+      <div app-table-save>
+        <app-button  class="button" [buttonName]="'Save'" (click)="updateList(myForm.value)"></app-button>
+        <app-button class=" button" [buttonName]="'Cancel'" [primary]=false></app-button>
+      </div>
+
     </app-table>
+
   </div>
   <div class="col-md-2"></div>
 </div>

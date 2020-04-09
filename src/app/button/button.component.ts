@@ -6,9 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent implements OnInit {
-  @Input() primary: boolean;
+  @Input()  primary: boolean;
   @Input() enabled: boolean;
-  @Input() buttonName: string;
+  @Input() public buttonName: string;
 
   constructor() { }
 

@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class MainComponent implements OnInit {
   myForm: FormGroup;
+  empDetail: any;
   jobRoleOptions: Observable<any>;
   deptOptions: Observable<any>;
   roles: string[] = ['tester', 'developer', 'Business analyst'];
@@ -27,24 +28,24 @@ export class MainComponent implements OnInit {
    },
    body: {
      rows: [
-       {id: 1, Name : 'Andy', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 2, Name : 'Ålex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 3, Name : 'Boby', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 4, Name : 'Bella', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 5, Name : 'Bex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 6, Name : 'Andrew', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 7, Name : 'Chandler', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 8, Name : 'Casper', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 9, Name : 'Daniel', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 10, Name : 'David', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 11, Name : 'Joey', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 12, Name : 'Monica', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 13, Name : 'Phoebe', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {id: 14, Name : 'Rachel', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 15, Name : 'Ross', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 16, Name : 'Mike', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {id: 17, Name : 'Janice', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {id: 18, Name : 'Susan', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'}
+       {Name : 'Andy', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {Name : 'Ålex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Boby', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'Bella', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {Name : 'Bex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Andrew', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'Chandler', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {Name : 'Casper', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Daniel', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'David', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {Name : 'Joey', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Monica', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'Phoebe', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
+       {Name : 'Rachel', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Ross', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'Mike', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
+       {Name : 'Janice', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
+       {Name : 'Susan', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'}
      ]
    }
  };
@@ -67,4 +68,17 @@ export class MainComponent implements OnInit {
         map(value => this.dept.filter(option => option.toLowerCase().includes(value)))
       );
   }
+
+  updateList(formValue) {
+     this.empDetail = [formValue.firstname,
+          formValue.startdate,
+          formValue.jobrole,
+          formValue.department];
+
+        localStorage.setItem('Updated empDetails', this.empDetail);
+        console.log(localStorage.getItem('Updated empDetails'));
+        alert("Data Saved!!");
+        console.log(formValue);
+  }
+
 }

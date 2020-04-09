@@ -41,14 +41,13 @@
           {{row.Department}}
         </div>
 
-        <div class="table-body-cell">
-          <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false"
-                  class="btn btn-default button">Cancel
+        <div class="table-body-cell" *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false">
+          <ng-content select=[app-table-save]></ng-content>
+        </div>
+
+        <div class="table-body-cell" *ngIf="!enableEdit || enableEditIndex !== i" (click)="enableEditMethod(i)">
+          <button type="button" class="btn btn-primary button">Edit
           </button>
-          <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn btn-success button"
-                  type="submit">Save
-          </button>
-          <button type="button" class="btn btn-primary button" *ngIf="!enableEdit || enableEditIndex !== i" (click)="enableEditMethod($event, i)">Edit</button>
         </div>
 
       </div>
