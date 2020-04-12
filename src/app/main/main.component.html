@@ -31,8 +31,8 @@
       </div>
 
       <div app-table-save>
-        <app-button  class="button" [buttonName]="'Save'" (click)="updateList(myForm.value)"></app-button>
-        <app-button class=" button" [buttonName]="'Cancel'" [primary]=false></app-button>
+        <app-button  class="button" [buttonName]="'Save'"  [enabled]="myForm.invalid" (click)="updateList(myForm.value)"></app-button>
+        <app-button class=" button" [buttonName]="'Cancel'" (click)="close()" [primary]=false></app-button>
       </div>
 
     </app-table>

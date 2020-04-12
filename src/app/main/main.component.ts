@@ -79,6 +79,9 @@ export class MainComponent implements OnInit {
         console.log(localStorage.getItem('Updated empDetails'));
         alert("Data Saved!!");
         console.log(formValue);
+        this.myForm.reset();
   }
-
+  close() {
+  this.myForm.reset();
+  }
 }

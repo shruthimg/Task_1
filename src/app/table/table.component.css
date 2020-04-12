@@ -32,6 +32,7 @@
 .scroll #resp-table-header .table-header-cell {
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: lightgrey;
 }
 ::-webkit-scrollbar {
