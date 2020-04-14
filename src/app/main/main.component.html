@@ -2,40 +2,34 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h4>Employee Details</h4>
-    <app-table [data]="data">
+    <app-table [itemTemplate]="nameTemplate" [data]="data"></app-table>
 
-      <div app-table-name>
-        <form [formGroup]="myForm">
-          <app-text-field formControlName="firstname"></app-text-field>
-        </form>
-      </div>
+    <ng-template #nameTemplate let-row let-column="column">
+      <form [formGroup]="myForm">
+        <div *ngIf="!row[column.name].active" (click)="row[column.name].active = !row[column.name].active">
+          {{row[column.name].value}}
+        </div>
+        <div *ngIf="row[column.name].active">
+          <div *ngIf="column.name === 'Name'">
+            <app-text-field formControlName="firstname"
+                            ></app-text-field>
+          </div>
+          <div *ngIf="column.name === 'Start Date'">
+            <app-date-field formControlName="startdate" ></app-date-field>
+          </div>
+          <div *ngIf="column.name === 'Job Role'">
+            <app-reference-field [refControl]="myForm.controls.jobrole" [filteredOptions]="jobRoleOptions"
+                                 formControlName="jobrole"></app-reference-field>
+          </div>
+          <div *ngIf="column.name === 'Department'">
+            <app-reference-field [refControl]="myForm.controls.department"
+                                 [filteredOptions]="deptOptions" formControlName="department"></app-reference-field>
+          </div>
+        </div>
+      </form>
 
-      <div app-table-date>
-        <form [formGroup]="myForm">
-          <app-date-field formControlName="startdate"></app-date-field>
-        </form>
-      </div>
+    </ng-template>
 
-      <div app-table-role>
-        <form [formGroup]="myForm">
-          <app-reference-field [refControl]="myForm.controls.jobrole"
-                               [filteredOptions]="jobRoleOptions" formControlName="jobrole"></app-reference-field>
-        </form>
-      </div>
-
-      <div app-table-dept>
-        <form [formGroup]="myForm">
-          <app-reference-field [refControl]="myForm.controls.department"
-                               [filteredOptions]="deptOptions" formControlName="department"></app-reference-field>
-        </form>
-      </div>
-
-      <div app-table-save>
-        <app-button  class="button" [buttonName]="'Save'"  [enabled]="myForm.invalid" (click)="updateList(myForm.value)"></app-button>
-        <app-button class=" button" [buttonName]="'Cancel'" (click)="close()" [primary]=false></app-button>
-      </div>
-
-    </app-table>
 
   </div>
   <div class="col-md-2"></div>

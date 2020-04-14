@@ -5,53 +5,17 @@
         <div class="table-header-cell" *ngFor="let column of headers">
           {{column.name}}
         </div>
-        <div class="table-header-cell">
-
-        </div>
       </div>
     </div>
-
     <div id="resp-table-body">
       <div class="resp-table-row" *ngFor="let row of rows;let i = index">
-
-        <div *ngIf="enableEdit && enableEditIndex == i" class="table-body-cell">
-          <ng-content select=[app-table-name]></ng-content>
+        <div class="table-body-cell" *ngFor="let column of headers;let j = index">
+          <ng-container [ngTemplateOutlet]="itemTemplate"
+                        [ngTemplateOutletContext]="{ $implicit: row, column: column }"></ng-container>
         </div>
-        <div *ngIf="!enableEdit || enableEditIndex !== i" class="table-body-cell">{{row.Name}}
-        </div>
-
-        <div *ngIf="enableEdit && enableEditIndex == i" class="table-body-cell">
-          <ng-content select=[app-table-date]></ng-content>
-        </div>
-        <div *ngIf="!enableEdit || enableEditIndex !== i" class="table-body-cell">
-          {{row.Start_Date}}
-        </div>
-
-        <div *ngIf="enableEdit && enableEditIndex == i" class="table-body-cell">
-          <ng-content select=[app-table-role]></ng-content>
-        </div>
-        <div *ngIf="!enableEdit || enableEditIndex !== i" class="table-body-cell">
-          {{row.Job_Role}}
-        </div>
-
-        <div *ngIf="enableEdit && enableEditIndex == i" class="table-body-cell">
-          <ng-content select=[app-table-dept]></ng-content>
-        </div>
-        <div *ngIf="!enableEdit || enableEditIndex !== i" class="table-body-cell">
-          {{row.Department}}
-        </div>
-
-        <div class="table-body-cell" *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false">
-          <ng-content select=[app-table-save]></ng-content>
-        </div>
-
-        <div class="table-body-cell" *ngIf="!enableEdit || enableEditIndex !== i" (click)="enableEditMethod(i)">
-          <button type="button" class="btn btn-primary button">Edit
-          </button>
-        </div>
-
       </div>
     </div>
-
   </div>
 </div>
+
+

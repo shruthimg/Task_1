@@ -4,6 +4,7 @@
              type="text" bsDatepicker
              class="form-control"
              #inputValue
+             autocomplete="off"
              value="{{innerValue}}"
              (input)="onInput()"
              (blur)="onChange($event, inputValue.value)"

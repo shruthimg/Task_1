@@ -6,10 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  enableEdit = false;
-  enableEditIndex = null;
   headers: any[];
   rows: any;
+  @Input() itemTemplate: TemplateRef<HTMLElement>
   @Input() data: {
     header: {
       rows: TableRow[]
@@ -24,12 +23,8 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.headers = this.data.header.rows[0].columns;
-    this.rows = this.data.body.rows;
+    this.rows = this.data.body.rows[0].columns;
   }
-  enableEditMethod(i) {
-      this.enableEdit = true;
-      this.enableEditIndex = i;
-    }
 }
 
 export class TableRow {
@@ -39,5 +34,5 @@ export class TableRow {
 
 export class TableColumn {
   name: string;
-  styleClass: string;
+  contentModel: {};
 }

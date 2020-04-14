@@ -9,4 +9,11 @@
   background-color: white;
 
 }
-
+.button {
+  width: 60px;
+  background-color: cornflowerblue;
+  margin-left: 13px;
+  color: aliceblue;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

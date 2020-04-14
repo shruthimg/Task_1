@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 export class MainComponent implements OnInit {
   myForm: FormGroup;
   empDetail: any;
+  columns: any;
   jobRoleOptions: Observable<any>;
   deptOptions: Observable<any>;
   roles: string[] = ['tester', 'developer', 'Business analyst'];
@@ -19,34 +20,25 @@ export class MainComponent implements OnInit {
  data = {
    header: {
      rows: [{
-       columns: [{name: 'Name', styleClass: 'name'},
-         {name: 'Start Date', styleClass: 'date'},
-         {name: 'Job Role', styleClass: 'role'},
-         {name: 'Department', styleClass: 'department'}],
+       columns: [{name: 'Name', contentModel: {active: false}, styleClass: 'name'},
+         {name: 'Start Date', contentModel: {active: false}, styleClass: 'date'},
+         {name: 'Job Role', contentModel: {active: false}, styleClass: 'role'},
+         {name: 'Department', contentModel: {active: false}, styleClass: 'department'}],
        styleClass: 'header'
      }]
    },
    body: {
-     rows: [
-       {Name : 'Andy', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {Name : 'Ålex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Boby', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'Bella', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {Name : 'Bex', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Andrew', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'Chandler', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {Name : 'Casper', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Daniel', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'David', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {Name : 'Joey', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Monica', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'Phoebe', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'},
-       {Name : 'Rachel', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Ross', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'Mike', Start_Date : '11-01-2019', Job_Role :  'developer', Department: 'developing an application'},
-       {Name : 'Janice', Start_Date : '12-01-2019', Job_Role :  'Business analyst', Department: 'analysing the business'},
-       {Name : 'Susan', Start_Date : '10-01-2019', Job_Role :  'tester', Department: 'testing an application'}
-     ]
+     rows: [{
+        columns: [
+                   {"Name" : {active: false, value: 'Andy'}, "Start Date" : {active: false, value: '01-07-2018'}, "Job Role" :  {active: false, value: "tester"}, "Department": {active: false, value: "testing an application"}},
+                   {"Name" : {active: false, value: 'Alex'}, "Start Date" : {active: false, value: '01-07-2018'}, "Job Role" :  {active: false, value: "tester"}, "Department": {active: false, value: "testing an application"}},
+                   {"Name" : {active: false, value: 'Ben'}, "Start Date" : {active: false, value: '01-07-2018'}, "Job Role" :  {active: false, value: "tester"}, "Department": {active: false, value: "testing an application"}},
+                   {"Name" : {active: false, value: 'Bex'}, "Start Date" : {active: false, value: '01-07-2018'}, "Job Role" :  {active: false, value: "tester"}, "Department": {active: false, value: "testing an application"}},
+                   {"Name" : {active: false, value: 'Casper'}, "Start Date" : {active: false, value: '01-07-2018'}, "Job Role" :  {active: false, value: "tester"}, "Department": {active: false, value: "testing an application"}},
+
+                 ],
+        styleClass: 'row'
+     }]
    }
  };
   ngOnInit(): void {
@@ -67,21 +59,7 @@ export class MainComponent implements OnInit {
         startWith(''),
         map(value => this.dept.filter(option => option.toLowerCase().includes(value)))
       );
+
   }
 
-  updateList(formValue) {
-     this.empDetail = [formValue.firstname,
-          formValue.startdate,
-          formValue.jobrole,
-          formValue.department];
-
-        localStorage.setItem('Updated empDetails', this.empDetail);
-        console.log(localStorage.getItem('Updated empDetails'));
-        alert("Data Saved!!");
-        console.log(formValue);
-        this.myForm.reset();
-  }
-  close() {
-  this.myForm.reset();
-  }
 }
