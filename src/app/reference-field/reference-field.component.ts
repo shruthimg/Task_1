@@ -20,7 +20,7 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
 
   set value(value: any) {
     if (value !== this.innerValue) {
-      this.innerValue = value;
+    //  this.innerValue = value;
     }
   }
   @Input() refFieldName: string;
@@ -28,17 +28,18 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
   @Input() refControl: FormControl;
   @ViewChild('inputValue') input: ElementRef;
   @Output() messageEvent = new EventEmitter<any>();
-  innerValue: any;
+  @Input() innerValue: any;
   disabled: boolean;
 
   constructor() {}
   propagateChange = (_: any) => { };
   writeValue(value: string) {
-    this.innerValue = value;
+    //this.innerValue = value;
   }
   onChange(e: Event, value: any) {
     this.innerValue = value;
     this.propagateChange(this.innerValue);
+    this.messageEvent.emit(e);
   }
 
   registerOnChange(fn: any) {
@@ -55,8 +56,4 @@ export class ReferenceFieldComponent implements ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
-   sendMessage(e: Event) {
-        this.messageEvent.emit(e);
-      }
 }

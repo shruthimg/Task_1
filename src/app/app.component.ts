@@ -14,8 +14,8 @@ export class AppComponent implements OnInit {
   empDetail: any;
   myForm: FormGroup;
   options: string[] = ['One', 'Two', 'Three'];
-  jobRoleOptions: Observable<any>;
-  deptOptions: Observable<any>;
+  jobOptions: Observable<any>;
+  departmentOptions: Observable<any>;
 
   constructor(private sharedService: SharedService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -28,12 +28,12 @@ export class AppComponent implements OnInit {
       department: ['', [Validators.required, Validators.minLength(4)]]
     });
 
-    this.jobRoleOptions = this.myForm.controls.jobrole.valueChanges
+    this.jobOptions = this.myForm.controls.jobrole.valueChanges
       .pipe(debounceTime(200), distinctUntilChanged(),
         startWith(''),
         map(value => this.options.filter(option => option.toLowerCase().includes(value)))
       );
-    this.deptOptions = this.myForm.controls.department.valueChanges
+    this.departmentOptions = this.myForm.controls.department.valueChanges
       .pipe(debounceTime(200), distinctUntilChanged(),
         startWith(''),
         map(value => this.options.filter(option => option.toLowerCase().includes(value)))

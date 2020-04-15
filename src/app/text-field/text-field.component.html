@@ -1,10 +1,10 @@
-    <mat-form-field class="full-width">
-      <mat-label>{{textFieldName}}</mat-label>
-      <input matInput placeholder="{{textFieldName}}" type="text" #inputValue
-             (input)="onInput()"
-             (blur)="onChange($event, inputValue.value)"
-             (blur)="sendMessage($event)"
-             class="form-control"
-             value="{{innerValue}}" >
-    </mat-form-field>
+<mat-form-field class="full-width">
+  <mat-label>{{textFieldName}}</mat-label>
+  <input matInput placeholder="{{textFieldName}}" type="text" #inputValue
+         (input)="onInput()"
+         autocomplete="off"
+         (blur)="onChange($event, inputValue.value)"
+         class="form-control"
+         value="{{innerValue}}">
+</mat-form-field>
 

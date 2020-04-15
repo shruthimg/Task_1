@@ -1,18 +1,19 @@
-    <mat-form-field class="full-width">
-      <mat-label>{{refFieldName}}</mat-label>
-      <input placeholder="{{refFieldName}}" type="text" class="form-control"
-             matInput #inputValue
-             (input)="onInput()"
-             (blur)="onChange($event, inputValue.value)"
-             (blur)="sendMessage($event)"
-             value="{{innerValue}}"
-             [formControl]="refControl"
-             [matAutocomplete]="auto" >
+ <mat-form-field class="full-width" >
+    <mat-label>{{refFieldName}}</mat-label>
+    <input placeholder="{{refFieldName}}" type="text" class="form-control"
+           matInput #inputValue
+           (input)="onInput()"
+           (blur)="onChange($event, inputValue.value)"
+           value="{{innerValue}}"
+           [formControl]="refControl"
+           [matAutocomplete]="auto" >
 
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
 
-    </mat-form-field>
+  </mat-form-field>
+
+

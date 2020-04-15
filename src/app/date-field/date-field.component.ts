@@ -32,25 +32,25 @@ export class DateFieldComponent implements ControlValueAccessor {
 
   set value(value: any) {
     if (value !== this.innerValue) {
-      this.innerValue = value;
+      //this.innerValue = value;
     }
   }
   @Input() dateFieldName: string;
   @ViewChild('inputValue') input: ElementRef;
   @Output() messageEvent = new EventEmitter<any>();
-  innerValue: any;
+  @Input() innerValue: any;
   disabled: boolean;
   datePickerConfig: Partial<BsDatepickerConfig>;
   propagateChange = (_: any) => { };
 
   writeValue(value: string) {
-    this.innerValue = value;
+    //this.innerValue = value;
   }
   onChange(e: Event, value: any) {
     this.innerValue = value;
     this.propagateChange(this.innerValue);
+    this.messageEvent.emit(e);
   }
-
   registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
@@ -71,8 +71,4 @@ export class DateFieldComponent implements ControlValueAccessor {
       this.propagateChange(e);
     }
   }
-
-  sendMessage(e: Event) {
-          this.messageEvent.emit(e);
-        }
 }

@@ -5,10 +5,9 @@
              class="form-control"
              #inputValue
              autocomplete="off"
-             value="{{innerValue}}"
+             value="{{innerValue | date:'dd-MM-yyyy'}}"
              (input)="onInput()"
              (blur)="onChange($event, inputValue.value)"
-             (blur)="sendMessage($event)"
              (bsValueChange)="dateChanged($event)"
              [bsConfig]="datePickerConfig"
              placement="bottom">

@@ -19,7 +19,7 @@ export class TextFieldComponent implements ControlValueAccessor {
   @Input() textFieldName: string;
   @ViewChild('inputValue') input: ElementRef;
   @Output() messageEvent = new EventEmitter<any>();
-  innerValue: any;
+  @Input() innerValue: any;
   disabled: boolean;
   propagateChange = (_: any) => { };
 
@@ -31,15 +31,16 @@ export class TextFieldComponent implements ControlValueAccessor {
 
   set value(value: any) {
     if (value !== this.innerValue) {
-      this.innerValue = value;
+    //  this.innerValue = value;
     }
   }
   writeValue(value: string) {
-    this.innerValue = value ? value : '';
+    //this.innerValue = value ? value : '';
   }
   onChange(e: Event, value: any) {
     this.innerValue = value;
     this.propagateChange(this.innerValue);
+    this.messageEvent.emit(e);
   }
 
   registerOnChange(fn: any) {
@@ -56,7 +57,4 @@ export class TextFieldComponent implements ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-  sendMessage(e: Event) {
-      this.messageEvent.emit(e);
-    }
 }
