@@ -2,13 +2,11 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h4>Employee Details</h4>
-    <app-table
-      [template]="{'nameTemplate': nameTemplate, 'dateTemplate': dateTemplate, 'roleTemplate': roleTemplate, 'deptTemplate': deptTemplate}"
-      [data]="data"></app-table>
+    <app-table [data]="data"> </app-table>
 
     <form [formGroup]="tableForm">
       <ng-template #nameTemplate let-column>
-        <div *ngIf="column.styleClass === 'name'">
+<!--        <div *ngIf="column.styleClass === 'name'">-->
           <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
             {{column.contentModel.value}}
           </div>
@@ -17,7 +15,7 @@
             <app-text-field [innerValue]="tableForm.controls.firstname.value"
                             formControlName="firstname"></app-text-field>
           </div>
-        </div>
+<!--        </div>-->
       </ng-template>
 
       <ng-template #dateTemplate let-column>
@@ -58,6 +56,7 @@
         </div>
       </ng-template>
     </form>
+
   </div>
   <div class="col-md-2"></div>
 </div>
