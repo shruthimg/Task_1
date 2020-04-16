@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -6,9 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  @Input() template: TemplateRef<any>;
   headers: any[];
   rows: any;
-  @Input() itemTemplate: TemplateRef<HTMLElement>
   @Input() data: {
     header: {
       rows: TableRow[]
@@ -23,7 +23,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.headers = this.data.header.rows[0].columns;
-    this.rows = this.data.body.rows[0].columns;
+    this.rows = this.data.body.rows;
   }
 }
 
@@ -33,6 +33,7 @@ export class TableRow {
 }
 
 export class TableColumn {
-  name: string;
-  contentModel: {};
+  reference: any;
+  contentModel: {active: boolean, value: string};
+  styleClass: string;
 }

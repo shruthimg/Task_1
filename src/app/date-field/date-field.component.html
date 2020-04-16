@@ -1,15 +1,14 @@
-    <mat-form-field class="full-width">
-      <mat-label>{{dateFieldName}}</mat-label>
-      <input matInput placeholder="{{dateFieldName}}"
-             type="text" bsDatepicker
-             class="form-control"
-             #inputValue
-             autocomplete="off"
-             value="{{innerValue | date:'dd-MM-yyyy'}}"
-             (input)="onInput()"
-             (blur)="onChange($event, inputValue.value)"
-             (bsValueChange)="dateChanged($event)"
-             [bsConfig]="datePickerConfig"
-             placement="bottom">
-    </mat-form-field>
-
+<mat-form-field class="full-width">
+  <mat-label>{{dateFieldName}}</mat-label>
+  <input matInput placeholder="{{dateFieldName}}"
+         type="text" bsDatepicker
+         class="form-control"
+         #inputValue
+         autocomplete="off"
+         value="{{innerValue | date:'dd-MM-yyyy'}}"
+         (input)="onInput()"
+         (blur)="onChange($event, inputValue.value)"
+         (bsValueChange)="dateChanged($event)"
+         [bsConfig]="datePickerConfig"
+         placement="right">
+</mat-form-field>

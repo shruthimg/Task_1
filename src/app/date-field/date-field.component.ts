@@ -38,6 +38,7 @@ export class DateFieldComponent implements ControlValueAccessor {
   @Input() dateFieldName: string;
   @ViewChild('inputValue') input: ElementRef;
   @Output() messageEvent = new EventEmitter<any>();
+  @Output() blurEvent = new EventEmitter<any>();
   @Input() innerValue: any;
   disabled: boolean;
   datePickerConfig: Partial<BsDatepickerConfig>;
@@ -49,7 +50,7 @@ export class DateFieldComponent implements ControlValueAccessor {
   onChange(e: Event, value: any) {
     this.innerValue = value;
     this.propagateChange(this.innerValue);
-    this.messageEvent.emit(e);
+    this.blurEvent.emit(e);
   }
   registerOnChange(fn: any) {
     this.propagateChange = fn;
@@ -69,6 +70,7 @@ export class DateFieldComponent implements ControlValueAccessor {
   dateChanged = (e: Date): void => {
     if (e) {
       this.propagateChange(e);
+      this.messageEvent.emit(e);
     }
   }
 }

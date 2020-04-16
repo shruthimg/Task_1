@@ -2,50 +2,62 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h4>Employee Details</h4>
-    <app-table [itemTemplate]="nameTemplate" [data]="data"></app-table>
+    <app-table
+      [template]="{'nameTemplate': nameTemplate, 'dateTemplate': dateTemplate, 'roleTemplate': roleTemplate, 'deptTemplate': deptTemplate}"
+      [data]="data"></app-table>
 
-    <ng-template #nameTemplate let-row let-column="column" let-index="index">
-      <form [formGroup]="tableForm">
-        <div formArrayName="memberDetails">
-          <div [formGroupName]="index">
-            <div *ngIf="!row[column.name].active" (click)="row[column.name].active = !row[column.name].active">
-              {{row[column.name].value}}
-            </div>
-            <div *ngIf="row[column.name].active">
-              <div *ngIf="column.name === 'Name'">
-                <app-text-field [innerValue]="tableForm.controls.memberDetails.controls[index].controls.firstname.value"
-                                (messageEvent)="onBlur($event, column.name, index)"
-                                formControlName="firstname"
-                ></app-text-field>
-              </div>
-              <div (blur)="row[column.name].active = !row[column.name].active" tabindex="1" *ngIf="column.name === 'Start Date'">
-                <app-date-field [innerValue]="tableForm.controls.memberDetails.controls[index].controls.startdate.value"
-                                (messageEvent)="onDateBlur($event, column.name, index)"
-                                formControlName="startdate"></app-date-field>
-              </div>
-              <div *ngIf="column.name === 'Job Role'">
-                <app-reference-field
-                  [innerValue]="tableForm.controls.memberDetails.controls[index].controls.jobrole.value"
-                  (messageEvent)="onBlur($event, column.name, index)"
-                  [refControl]="tableForm.controls.memberDetails.controls[index].controls.jobrole"
-                  [filteredOptions]="jobRoleOptions"
-                  formControlName="jobrole"></app-reference-field>
-              </div>
-              <div *ngIf="column.name === 'Department'">
-                <app-reference-field
-                  [innerValue]="tableForm.controls.memberDetails.controls[index].controls.department.value"
-                  (messageEvent)="onBlur($event, column.name, index)"
-                  [refControl]="tableForm.controls.memberDetails.controls[index].controls.department"
-                  [filteredOptions]="deptOptions" formControlName="department"></app-reference-field>
-              </div>
-            </div>
+    <form [formGroup]="tableForm">
+      <ng-template #nameTemplate let-column>
+        <div *ngIf="column.styleClass === 'name'">
+          <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
+            {{column.contentModel.value}}
+          </div>
+          <div *ngIf="column.contentModel.active">
+
+            <app-text-field [innerValue]="tableForm.controls.firstname.value"
+                            formControlName="firstname"></app-text-field>
           </div>
         </div>
-      </form>
+      </ng-template>
 
-    </ng-template>
+      <ng-template #dateTemplate let-column>
+        <div *ngIf="column.styleClass === 'date'">
+          <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
+            {{column.contentModel.value}}
+          </div>
+          <div *ngIf="column.contentModel.active">
+            <app-date-field [innerValue]="tableForm.controls.startdate.value"
+                            formControlName="startdate"></app-date-field>
+          </div>
+        </div>
+      </ng-template>
 
+      <ng-template #roleTemplate let-column>
+        <div *ngIf="column.styleClass === 'role'">
+          <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
+            {{column.contentModel.value}}
+          </div>
+          <div *ngIf="column.contentModel.active">
+            <app-reference-field [innerValue]="tableForm.controls.jobrole.value" formControlName="jobrole"
+                                 [refControl]="tableForm.controls.jobrole"
+                                 [filteredOptions]="jobRoleOptions"></app-reference-field>
+          </div>
+        </div>
+      </ng-template>
 
+      <ng-template #deptTemplate let-column>
+        <div *ngIf="column.styleClass === 'dept'">
+          <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
+            {{column.contentModel.value}}
+          </div>
+          <div *ngIf="column.contentModel.active">
+            <app-reference-field [innerValue]="tableForm.controls.department.value" formControlName="department"
+                                 [refControl]="tableForm.controls.department"
+                                 [filteredOptions]="deptOptions"></app-reference-field>
+          </div>
+        </div>
+      </ng-template>
+    </form>
   </div>
   <div class="col-md-2"></div>
 </div>
