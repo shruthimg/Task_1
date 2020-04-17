@@ -37,6 +37,7 @@ export class MainComponent implements OnInit, AfterContentInit {
 			rows: [{
 				columns: [{
 						name: 'Name',
+						reference: null,
 						contentModel: {
 							active: false,
 							value: ''
@@ -45,6 +46,7 @@ export class MainComponent implements OnInit, AfterContentInit {
 					},
 					{
 						name: 'Start Date',
+						reference: null,
 						contentModel: {
 							active: false,
 							value: ''
@@ -53,6 +55,7 @@ export class MainComponent implements OnInit, AfterContentInit {
 					},
 					{
 						name: 'Job Role',
+						reference: null,
 						contentModel: {
 							active: false,
 							value: ''
@@ -61,6 +64,7 @@ export class MainComponent implements OnInit, AfterContentInit {
 					},
 					{
 						name: 'Department',
+						reference: null,
 						contentModel: {
 							active: false,
 							value: ''

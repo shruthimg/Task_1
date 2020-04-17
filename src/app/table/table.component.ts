@@ -35,6 +35,7 @@ export class TableRow {
 }
 
 export class TableColumn {
+  name: string;
 	reference: any;
 	contentModel: {
 		active: boolean,
