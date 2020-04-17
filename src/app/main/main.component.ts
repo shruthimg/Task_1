@@ -4,7 +4,7 @@ import {
 	OnInit,
 	ViewChild,
 	TemplateRef,
-	AfterContentInit,
+	AfterViewInit,
 	ChangeDetectorRef
 } from '@angular/core';
 import {
@@ -21,400 +21,46 @@ import {
 import {
 	Observable
 } from 'rxjs';
-
+import {
+	HttpClient
+} from '@angular/common/http';
 @Component({
 	selector: 'app-main',
 	templateUrl: './main.component.html',
 	styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit, AfterContentInit {
+export class MainComponent implements OnInit, AfterViewInit {
 	@ViewChild('nameTemplate') nameTemplate: TemplateRef < any > ;
 	@ViewChild('dateTemplate') dateTemplate: TemplateRef < any > ;
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef < any > ;
 	@ViewChild('deptTemplate') deptTemplate: TemplateRef < any > ;
-	data = {
+	@ViewChild('commentTemplate') commentTemplate: TemplateRef < any > ;
+	data: {
 		header: {
-			rows: [{
-				columns: [{
-						name: 'Name',
-						reference: null,
-						contentModel: {
-							active: false,
-							value: ''
-						},
-						styleClass: 'name'
-					},
-					{
-						name: 'Start Date',
-						reference: null,
-						contentModel: {
-							active: false,
-							value: ''
-						},
-						styleClass: 'date'
-					},
-					{
-						name: 'Job Role',
-						reference: null,
-						contentModel: {
-							active: false,
-							value: ''
-						},
-						styleClass: 'role'
-					},
-					{
-						name: 'Department',
-						reference: null,
-						contentModel: {
-							active: false,
-							value: ''
-						},
-						styleClass: 'department'
-					}
-				],
-				styleClass: 'header'
-			}]
+			rows: TableRow[]
 		},
 		body: {
-			rows: [{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Alex'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Andy'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Bella'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Casper'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Monica'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Phoebe'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Rachel'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				},
-				{
-					columns: [{
-							name: 'Name',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'Ross'
-							},
-							styleClass: 'name'
-						},
-						{
-							name: 'Start Date',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: '12-12-2019'
-							},
-							styleClass: 'date'
-						},
-						{
-							name: 'Job Role',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developer'
-							},
-							styleClass: 'role'
-						},
-						{
-							name: 'Department',
-							reference: null,
-							contentModel: {
-								active: false,
-								value: 'developing an application'
-							},
-							styleClass: 'dept'
-						}
-					],
-					styleClass: 'row'
-				}
-
-			]
+			rows: TableRow[]
 		}
-	}
+	};
+
 	tableForm: FormGroup;
 	jobRoleOptions: Observable < any > ;
 	deptOptions: Observable < any > ;
 	roles: string[] = ['tester', 'developer', 'Business analyst'];
 	dept: string[] = ['testing an application', 'developing an application', 'analysing the business'];
 
-	constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {}
+	constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef, private http: HttpClient) {}
 
 	ngOnInit(): void {
 		this.tableForm = this.fb.group({
 			firstname: ['', [Validators.required, Validators.minLength(4)]],
 			startdate: ['', [Validators.required]],
 			jobrole: ['', [Validators.required, Validators.minLength(4)]],
-			department: ['', [Validators.required, Validators.minLength(4)]]
+			department: ['', [Validators.required, Validators.minLength(4)]],
+			comment: ['', [Validators.required, Validators.minLength(4)]]
 		});
+    this.data = JSON.parse(localStorage.getItem('EmployeesDetails'));
 
 		this.jobRoleOptions = this.tableForm.controls.jobrole.valueChanges
 			.pipe(debounceTime(200), distinctUntilChanged(),
@@ -443,8 +89,12 @@ export class MainComponent implements OnInit, AfterContentInit {
 				case 'Department':
 					col.reference = this.deptTemplate;
 					break;
+				case 'Comment':
+					col.reference = this.commentTemplate;
+					break;
 			}
 		}))
 		this.cdr.detectChanges();
+
 	}
 }

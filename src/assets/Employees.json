@@ -1,20 +1,460 @@
-[
-  {"Name" : "Andy", "Start Date" : "10/01/2019", "Job Role" :  "tester", "Department": "testing an application"},
-  {"Name" : "Ålex", "Start Date" : "11/01/2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Boby", "Start Date" : "12/01/2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "Bella", "Start Date" : "10-01-2019", "Job Role" :  "tester", "Department": "testing an application"},
-  {"Name" : "Bex", "Start Date" : "11-01-2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Andrew", "Start Date" : "12-01-2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "Chandler", "Start Date" : "10-01-2019", "Job Role" :  "tester", "Department": "testing an application"},
-  {"Name" : "Casper", "Start Date" : "11-01-2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Daniel", "Start Date" : "12-01-2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "David", "Start Date" : "10-01-2019", "Job Role" :  "tester", "Department": "testing an application"},
-  {"Name" : "Joey", "Start Date" : "11-01-2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Monica", "Start Date" : "12-01-2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "Phoebe", "Start Date" : "10-01-2019", "Job Role" :  "tester", "Department": "testing an application"},
-  {"Name" : "Rachel", "Start Date" : "11-01-2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Ross", "Start Date" : "12-01-2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "Mike", "Start Date" : "11-01-2019", "Job Role" :  "developer", "Department": "developing an application"},
-  {"Name" : "Janice", "Start Date" : "12-01-2019", "Job Role" :  "Business analyst", "Department": "analysing the business"},
-  {"Name" : "Susan", "Start Date" : "10-01-2019", "Job Role" :  "tester", "Department": "testing an application"}
-]
+{
+  "header": {
+    "rows": [
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": ""
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": ""
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": ""
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": ""
+            },
+            "styleClass": "department"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": ""
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "header"
+      }
+    ]
+  },
+  "body": {
+    "rows": [
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Alex"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row1"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Andy"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row2"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Bella"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row3"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Casper"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row4"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Monica"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row5"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Phoebe"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row6"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Rachel"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row7"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Ross"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "12-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row8"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      }
+    ]
+  }
+}

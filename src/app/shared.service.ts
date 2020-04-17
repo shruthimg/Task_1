@@ -10,7 +10,10 @@ export class SharedService {
   private message = new BehaviorSubject(false);
   sharedMessage = this.message.asObservable();
 
-  constructor(private  http: HttpClient) { }
+  constructor(private  http: HttpClient) {
+
+  }
+
   nextMessage(message: boolean) {
     this.message.next(message);
   }

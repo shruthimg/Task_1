@@ -10,7 +10,7 @@
     <div id="resp-table-body">
       <div class="resp-table-row" *ngFor="let row of rows;let i = index">
         <div class="table-body-cell" *ngFor="let column of row.columns">
-          <ng-container [ngTemplateOutlet]="column.reference"
+          <ng-container [ngTemplateOutlet]="column.reference ? column.reference : defaultTemplate"
                         [ngTemplateOutletContext]="{ $implicit: column }"></ng-container>
         </div>
       </div>
@@ -18,4 +18,7 @@
   </div>
 </div>
 
+<ng-template #defaultTemplate let-column>
+  {{column.contentModel.value}}
+</ng-template>
 

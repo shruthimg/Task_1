@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	OnInit
+	OnInit,
+	TemplateRef
 } from '@angular/core';
 
 @Component({
@@ -10,8 +11,10 @@ import {
 	styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-	headers: any[];
-	rows: any;
+	headers: TableRow[];
+	rows: TableRow[];
+	defaultTemplate: TemplateRef<any>;
+
 	@Input() data: {
 		header: {
 			rows: TableRow[]
@@ -22,7 +25,7 @@ export class TableComponent implements OnInit {
 	};
 
 	ngOnInit(): void {
-		if (this.data !== null && this.data !== undefined) {
+		if (this.data) {
 			this.headers = this.data.header.rows[0].columns;
 			this.rows = this.data.body.rows;
 		}
