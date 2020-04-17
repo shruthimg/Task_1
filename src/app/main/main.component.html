@@ -7,7 +7,6 @@
     <form [formGroup]="tableForm">
 
       <ng-template #nameTemplate let-column>
-        <div *ngIf="column.styleClass === 'name'">
           <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
             {{column.contentModel.value}}
           </div>
@@ -15,11 +14,9 @@
             <app-text-field [innerValue]="tableForm.controls.firstname.value"
                             formControlName="firstname"></app-text-field>
           </div>
-        </div>
       </ng-template>
 
       <ng-template #dateTemplate let-column>
-        <div *ngIf="column.styleClass === 'date'">
           <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = true">
             {{column.contentModel.value}}
           </div>
@@ -27,11 +24,9 @@
             <app-date-field [innerValue]="tableForm.controls.startdate.value"
                             formControlName="startdate"></app-date-field>
           </div>
-        </div>
       </ng-template>
 
       <ng-template #roleTemplate let-column>
-        <div *ngIf="column.styleClass === 'role'">
           <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
             {{column.contentModel.value}}
           </div>
@@ -40,11 +35,9 @@
                                  [refControl]="tableForm.controls.jobrole"
                                  [filteredOptions]="jobRoleOptions"></app-reference-field>
           </div>
-        </div>
       </ng-template>
 
       <ng-template #deptTemplate let-column>
-        <div *ngIf="column.styleClass === 'dept'">
           <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = !column.contentModel.active">
             {{column.contentModel.value}}
           </div>
@@ -53,7 +46,6 @@
                                  [refControl]="tableForm.controls.department"
                                  [filteredOptions]="deptOptions"></app-reference-field>
           </div>
-        </div>
       </ng-template>
     </form>
 
