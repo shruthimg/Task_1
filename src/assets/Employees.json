@@ -5,6 +5,7 @@
         "columns": [
           {
             "name": "Name",
+            "sort": true,
             "reference": null,
             "contentModel": {
               "active": false,
@@ -62,7 +63,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "Alex"
+              "value": "Ross"
             },
             "styleClass": "name"
           },
@@ -71,7 +72,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "12-12-2019"
+              "value": "01-12-2019"
             },
             "styleClass": "date"
           },
@@ -98,7 +99,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "row1"
+              "value": "row8"
             },
             "styleClass": "comment"
           }
@@ -121,7 +122,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "12-12-2019"
+              "value": "02-12-2019"
             },
             "styleClass": "date"
           },
@@ -155,6 +156,58 @@
         ],
         "styleClass": "row"
       },
+     
+      
+      {
+        "columns": [
+          {
+            "name": "Name",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "Casper"
+            },
+            "styleClass": "name"
+          },
+          {
+            "name": "Start Date",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "03-12-2019"
+            },
+            "styleClass": "date"
+          },
+          {
+            "name": "Job Role",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developer"
+            },
+            "styleClass": "role"
+          },
+          {
+            "name": "Department",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "developing an application"
+            },
+            "styleClass": "dept"
+          },
+          {
+            "name": "Comment",
+            "reference": null,
+            "contentModel": {
+              "active": false,
+              "value": "row4"
+            },
+            "styleClass": "comment"
+          }
+        ],
+        "styleClass": "row"
+      },
       {
         "columns": [
           {
@@ -171,7 +224,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "12-12-2019"
+              "value": "04-12-2019"
             },
             "styleClass": "date"
           },
@@ -212,7 +265,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "Casper"
+              "value": "Alex"
             },
             "styleClass": "name"
           },
@@ -221,7 +274,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "12-12-2019"
+              "value": "05-12-2019"
             },
             "styleClass": "date"
           },
@@ -248,7 +301,7 @@
             "reference": null,
             "contentModel": {
               "active": false,
-              "value": "row4"
+              "value": "row1"
             },
             "styleClass": "comment"
           }
@@ -404,57 +457,8 @@
           }
         ],
         "styleClass": "row"
-      },
-      {
-        "columns": [
-          {
-            "name": "Name",
-            "reference": null,
-            "contentModel": {
-              "active": false,
-              "value": "Ross"
-            },
-            "styleClass": "name"
-          },
-          {
-            "name": "Start Date",
-            "reference": null,
-            "contentModel": {
-              "active": false,
-              "value": "12-12-2019"
-            },
-            "styleClass": "date"
-          },
-          {
-            "name": "Job Role",
-            "reference": null,
-            "contentModel": {
-              "active": false,
-              "value": "developer"
-            },
-            "styleClass": "role"
-          },
-          {
-            "name": "Department",
-            "reference": null,
-            "contentModel": {
-              "active": false,
-              "value": "developing an application"
-            },
-            "styleClass": "dept"
-          },
-          {
-            "name": "Comment",
-            "reference": null,
-            "contentModel": {
-              "active": false,
-              "value": "row8"
-            },
-            "styleClass": "comment"
-          }
-        ],
-        "styleClass": "row"
       }
+     
     ]
   }
 }

@@ -24,6 +24,7 @@ import {
 import {
 	HttpClient
 } from '@angular/common/http';
+import { TableRow } from '../table/table.component';
 @Component({
 	selector: 'app-main',
 	templateUrl: './main.component.html',

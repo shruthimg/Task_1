@@ -2,16 +2,17 @@
   <div class="resp-table">
     <div id="resp-table-header">
       <div class="resp-table-row">
-        <div class="table-header-cell" *ngFor="let column of headers">
+        <div class="table-header-cell" matSort (matSortChange)="sort($event, column.name)"
+          *ngFor="let column of headers" mat-sort-header="{{column.name}}">
           {{column.name}}
         </div>
       </div>
     </div>
     <div id="resp-table-body">
-      <div class="resp-table-row" *ngFor="let row of rows;let i = index">
-        <div class="table-body-cell" *ngFor="let column of row.columns">
+      <div class="resp-table-row" *ngFor="let row of sortedData;let i = index">
+        <div class="table-body-cell" *ngFor="let column of row.columns ">
           <ng-container [ngTemplateOutlet]="column.reference ? column.reference : defaultTemplate"
-                        [ngTemplateOutletContext]="{ $implicit: column }"></ng-container>
+            [ngTemplateOutletContext]="{ $implicit: column }"></ng-container>
         </div>
       </div>
     </div>
@@ -21,4 +22,3 @@
 <ng-template #defaultTemplate let-column>
   {{column.contentModel.value}}
 </ng-template>
-
