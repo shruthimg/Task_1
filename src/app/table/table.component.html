@@ -3,7 +3,7 @@
     <div id="resp-table-header">
       <div class="resp-table-row">
         <div class="table-header-cell" matSort (matSortChange)="sort($event, column.name)"
-          *ngFor="let column of headers" mat-sort-header="{{column.name}}">
+          *ngFor="let column of headers" [disabled]="column.name !== 'Name'" mat-sort-header="{{column.name}}">
           {{column.name}}
         </div>
       </div>
