@@ -2,14 +2,15 @@
   <div class="resp-table">
     <div id="resp-table-header">
       <div class="resp-table-row">
-        <div class="table-header-cell" matSort (matSortChange)="sort($event, column.name)"
-          *ngFor="let column of headers" [disabled]="column.name !== 'Name'" mat-sort-header="{{column.name}}">
+        <div class="table-header-cell" (click)="sort($event, column)" *ngFor="let column of headers">
           {{column.name}}
+          <i class="fa" [ngClass]="{'fa-unsorted': (column.sort) , 'fa-sort-asc': (column.sort  && counter === 1),
+          'fa-sort-desc': (column.sort  && counter === 2) }" aria-hidden="true"> </i>
         </div>
       </div>
     </div>
     <div id="resp-table-body">
-      <div class="resp-table-row" *ngFor="let row of sortedData;let i = index">
+      <div class="resp-table-row" *ngFor="let row of rows;let i = index">
         <div class="table-body-cell" *ngFor="let column of row.columns ">
           <ng-container [ngTemplateOutlet]="column.reference ? column.reference : defaultTemplate"
             [ngTemplateOutletContext]="{ $implicit: column }"></ng-container>

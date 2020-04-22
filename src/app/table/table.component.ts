@@ -4,7 +4,6 @@ import {
 	OnInit,
 	TemplateRef
 } from '@angular/core';
-import { Sort } from '@angular/material/sort';
 
 @Component({
 	selector: 'app-table',
@@ -15,8 +14,9 @@ import { Sort } from '@angular/material/sort';
 export class TableComponent implements OnInit {
 	headers: TableRow[];
 	rows: TableRow[];
-	sortedData: TableRow[];
+	rawData: TableRow[];
 	defaultTemplate: TemplateRef<any>;
+	counter: number = 0;
 	@Input() data: {
 		header: {
 			rows: TableRow[]
@@ -30,41 +30,50 @@ export class TableComponent implements OnInit {
 		if (this.data) {
 			this.headers = this.data.header.rows[0].columns;
 			this.rows = this.data.body.rows;
-		}
-		this.sortedData = this.rows.slice();
+			this.rawData = this.rows.slice();
+		}		
 	}
 
-	sort(sort: Sort, name: string) {
-		if (this.headers[0].sort && sort.active === "Name") {
-			let index: number;
-			index = name === "Name" ? 0 : 0;
-			const data = this.rows.slice();
-			if (!sort.active || sort.direction === '') {
-				this.sortedData = data;
-				return;
+	sort(sort: any, column: TableColumn) {
+		if (column.sort) {
+			this.counter = this.counter % 3;
+			const index = column.name === 'Name' ? 0 : 0;
+			if (this.counter !== 2) {
+				const data = this.rows.slice();
+				data.sort((a, b) => {
+					const arg1 = a.columns[index].contentModel.value;
+					const arg2 = b.columns[index].contentModel.value
+					if (arg1 < arg2) {
+
+						return -1 * (this.counter === 0 ? 1 : -1);
+					} else if (arg1 > arg2) {
+						return 1 * (this.counter === 0 ? 1 : -1);
+					} else {
+						return 0;
+					}
+				});
+				this.rows = data;
 			}
-			this.sortedData = data.sort((a, b) => {
-				const isAsc = sort.direction === 'asc';
-				return this.compare(a.columns[index].contentModel.value, b.columns[index].contentModel.value, isAsc);
-			});
+			else {
+				this.rows = this.rawData;
+			}
+			this.counter++;
 		}
-	}
-	compare(a: number | string, b: number | string, isAsc: boolean) {
-		return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 	}
 }
 
 export class TableRow {
-	columns: TableColumn[];
+	columns: TableColumn[];	
 	styleClass: string;
 }
 
 export class TableColumn {
 	name: string;
+	sort: boolean;
 	reference: any;
 	contentModel: {
 		active: boolean,
 		value: string
 	};
-	styleClass: string;
+	id: string;
 }

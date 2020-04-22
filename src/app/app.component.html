@@ -20,7 +20,7 @@
       <label class="col-md-3 caption">Name</label>
       <div class="col-md-8">
         <app-text-field formControlName="firstname" [innerValue]="myForm.controls.firstname.value" required
-                        [textFieldName]="'Name'"></app-text-field>
+          [textFieldName]="'Name'"></app-text-field>
 
         <div
           *ngIf="myForm.controls.firstname.invalid && (myForm.controls.firstname.dirty || myForm.controls.firstname.touched)"
@@ -39,7 +39,7 @@
       <label class="col-md-3 caption">Date</label>
       <div class="col-md-8">
         <app-date-field formControlName="startdate" [innerValue]="myForm.controls.startdate.value"
-                        [dateFieldName]="'Start date'"></app-date-field>
+          [dateFieldName]="'Start date'"></app-date-field>
         <div
           *ngIf="myForm.controls.startdate.invalid && (myForm.controls.startdate.dirty || myForm.controls.startdate.touched)"
           class="alert alert-danger">
@@ -54,8 +54,8 @@
       <label class="col-md-3 caption">Role</label>
       <div class="col-md-8">
         <app-reference-field [refControl]="myForm.controls.jobrole" formControlName="jobrole"
-                             [innerValue]="myForm.controls.jobrole.value"
-                             [filteredOptions]="jobOptions" [refFieldName]="'Job role'"></app-reference-field>
+          [innerValue]="myForm.controls.jobrole.value" [filteredOptions]="jobOptions" [refFieldName]="'Job role'">
+        </app-reference-field>
         <div
           *ngIf="myForm.controls.jobrole.invalid && (myForm.controls.jobrole.dirty || myForm.controls.jobrole.touched)"
           class="alert alert-danger">
@@ -73,8 +73,8 @@
       <label class="col-md-3 caption">Department</label>
       <div class="col-md-8">
         <app-reference-field [refControl]="myForm.controls.department" formControlName="department"
-                             [innerValue]="myForm.controls.department.value"
-                             [filteredOptions]="departmentOptions" [refFieldName]="'Department'"></app-reference-field>
+          [innerValue]="myForm.controls.department.value" [filteredOptions]="departmentOptions"
+          [refFieldName]="'Department'"></app-reference-field>
         <div
           *ngIf="myForm.controls.department.invalid && (myForm.controls.department.dirty || myForm.controls.department.touched)"
           class="alert alert-danger">
@@ -89,13 +89,26 @@
         </div>
       </div>
 
+      <label class="col-md-3 caption">Comment</label>
+      <div class="col-md-8">
+        <app-text-field formControlName="comment" [innerValue]="myForm.controls.comment.value" required
+          [textFieldName]="'Comment'"></app-text-field>
+        <div
+          *ngIf="myForm.controls.comment.invalid && (myForm.controls.comment.dirty || myForm.controls.comment.touched)"
+          class="alert alert-danger">
+          <div *ngIf="myForm.controls.comment.errors?.required">
+            comment is required.
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 
   <div app-modal-footer>
     <div>
-      <app-button [primary]=true [buttonName]="'Add'" [enabled]="myForm.invalid"
-                  (click)="onSubmit(myForm.value)"></app-button>
+      <app-button [primary]=true [buttonName]="'Add'" [enabled]="myForm.invalid" (click)="onSubmit(myForm.value)">
+      </app-button>
       <app-button (click)="close()" [buttonName]="'Cancel'" [primary]=false></app-button>
     </div>
   </div>
