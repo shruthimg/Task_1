@@ -22,6 +22,7 @@ import {
 	Observable
 } from 'rxjs';
 import { TableRow, TableColumn } from '../table/table.component';
+import * as jsonData from '../../assets/employeeDetails.json';
 @Component({
 	selector: 'app-main',
 	templateUrl: './main.component.html',
@@ -41,7 +42,6 @@ export class MainComponent implements OnInit, AfterViewInit {
 			rows: TableRow[]
 		}
 	};
-
 	tableForm: FormGroup;
 	jobRoleOptions: Observable<any>;
 	deptOptions: Observable<any>;
@@ -70,8 +70,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 				startWith(''),
 				map(value => this.dept.filter(option => option.toLowerCase().includes(value)))
 			);
-
-		let localData = JSON.parse(localStorage.getItem('empDetails'));		
+		// If data fetching from localStorage 
+		// let localStorageData = JSON.parse(localStorage.getItem('empDetails'));
+		// If data fetching from local Json file 
+		let localStorageData = jsonData.default;
 		this.data.header = {
 			rows: [
 				<TableRow>{
@@ -90,8 +92,8 @@ export class MainComponent implements OnInit, AfterViewInit {
 		templateMap.set("jobRole", this.roleTemplate);
 		templateMap.set("department", this.deptTemplate);
 		templateMap.set("comment", this.commentTemplate);
-		if (localData) {
-			this.data.body.rows = localData.map(emp => {
+		if (localStorageData) {
+			this.data.body.rows = localStorageData.map(emp => {
 				return <TableRow>{
 					columns: this.data.header.rows[0].columns.map(headerColumn => {
 						return <TableColumn>{
