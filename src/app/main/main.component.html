@@ -5,10 +5,12 @@
     <app-table [data]="data"></app-table>
 
     <form [formGroup]="tableForm">
-
       <ng-template #nameTemplate let-column>
-        <div *ngIf="!column.contentModel.active">
+        <div *ngIf="!column.contentModel.active" (click)="column.contentModel.active = true">
           {{column.contentModel.value}}
+        </div>
+        <div *ngIf="column.contentModel.active">
+          <app-text-field [innerValue]="tableForm.controls.firstname.value" formControlName="firstname"></app-text-field>
         </div>
       </ng-template>
 
@@ -17,8 +19,8 @@
           {{column.contentModel.value}}
         </div>
         <div *ngIf="column.contentModel.active">
-          <app-date-field [innerValue]="tableForm.controls.startdate.value"
-                          formControlName="startdate"></app-date-field>
+          <app-date-field [innerValue]="tableForm.controls.startdate.value" formControlName="startdate">
+          </app-date-field>
         </div>
       </ng-template>
 
@@ -28,8 +30,7 @@
         </div>
         <div *ngIf="column.contentModel.active">
           <app-reference-field [innerValue]="tableForm.controls.jobrole.value" formControlName="jobrole"
-                               [refControl]="tableForm.controls.jobrole"
-                               [filteredOptions]="jobRoleOptions"></app-reference-field>
+            [refControl]="tableForm.controls.jobrole" [filteredOptions]="jobRoleOptions"></app-reference-field>
         </div>
       </ng-template>
 
@@ -39,8 +40,7 @@
         </div>
         <div *ngIf="column.contentModel.active">
           <app-reference-field [innerValue]="tableForm.controls.department.value" formControlName="department"
-                               [refControl]="tableForm.controls.department"
-                               [filteredOptions]="deptOptions"></app-reference-field>
+            [refControl]="tableForm.controls.department" [filteredOptions]="deptOptions"></app-reference-field>
         </div>
       </ng-template>
 
@@ -49,8 +49,7 @@
           {{column.contentModel.value}}
         </div>
         <div *ngIf="column.contentModel.active">
-          <app-text-field [innerValue]="tableForm.controls.comment.value" formControlName="comment"
-          ></app-text-field>
+          <app-text-field [innerValue]="tableForm.controls.comment.value" formControlName="comment"></app-text-field>
         </div>
       </ng-template>
     </form>
@@ -58,4 +57,3 @@
   </div>
   <div class="col-md-2"></div>
 </div>
-

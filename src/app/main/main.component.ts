@@ -3,7 +3,8 @@ import {
 	OnInit,
 	ViewChild,
 	TemplateRef,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	AfterViewInit
 } from '@angular/core';
 import {
 	FormBuilder,
@@ -26,7 +27,7 @@ import * as jsonData from '../../assets/employeeDetails.json';
 	templateUrl: './main.component.html',
 	styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
 	@ViewChild('nameTemplate') nameTemplate: TemplateRef<any>;
 	@ViewChild('dateTemplate') dateTemplate: TemplateRef<any>;
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef<any>;
@@ -46,7 +47,7 @@ export class MainComponent implements OnInit {
 	roles: string[] = ['Tester', 'Developer', 'Business analyst'];
 	dept: string[] = ['Testing an application', 'Developing an application', 'Analysing the business'];
 
-	constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) { }
+	constructor(private fb: FormBuilder, public cdr: ChangeDetectorRef) { }
 
 	ngOnInit(): void {
 		this.data = { header: { rows: [] }, body: { rows: [] } };
@@ -75,21 +76,15 @@ export class MainComponent implements OnInit {
 		this.data.header = {
 			rows: [
 				<TableRow>{
-					columns: [<TableColumn>{ name: "Name", sort: {active: true, order: ''}, id: "name" },
-					<TableColumn>{ name: "Start Date", sort: {active: false, order: ''}, id: "startDate" },
-					<TableColumn>{ name: "Job Role", sort: {active: false, order: ''}, id: "jobRole" },
-					<TableColumn>{ name: "Department", sort: {active: false, order: ''}, id: "department" },
-					<TableColumn>{ name: "Comment", sort: {active: true, order: ''}, id: "comment" }
+					columns: [<TableColumn>{ name: "Name", sort: { active: true, order: '' }, id: "name" },
+					<TableColumn>{ name: "Start Date", sort: { active: false, order: '' }, id: "startDate" },
+					<TableColumn>{ name: "Job Role", sort: { active: false, order: '' }, id: "jobRole" },
+					<TableColumn>{ name: "Department", sort: { active: false, order: '' }, id: "department" },
+					<TableColumn>{ name: "Comment", sort: { active: true, order: '' }, id: "comment" }
 					]
 				}
 			]
 		}
-		const templateMap: Map<string, TemplateRef<any>> = new Map<string, TemplateRef<any>>();
-		templateMap.set("name", this.nameTemplate);
-		templateMap.set("startdate", this.dateTemplate);
-		templateMap.set("jobRole", this.roleTemplate);
-		templateMap.set("department", this.deptTemplate);
-		templateMap.set("comment", this.commentTemplate);
 		if (localStorageData) {
 			this.data.body.rows = localStorageData.map(emp => {
 				return <TableRow>{
@@ -100,11 +95,33 @@ export class MainComponent implements OnInit {
 								value: emp[headerColumn.id],
 								active: false
 							},
-							reference: templateMap.get(headerColumn.id)
+							reference: ''
 						}
 					})
 				}
 			});
 		}
+	}
+	ngAfterViewInit() {
+		this.data.body.rows.forEach(row => row.columns.forEach(col => {
+			switch (col.id) {
+				case 'name':
+					col.reference = this.nameTemplate;
+					break;
+				case 'startDate':
+					col.reference = this.dateTemplate;
+					break;
+				case 'jobRole':
+					col.reference = this.roleTemplate;
+					break;
+				case 'department':
+					col.reference = this.deptTemplate;
+					break;
+				case 'comment':
+					col.reference = this.commentTemplate;
+					break;
+			}
+		}))
+		this.cdr.detectChanges();
 	}
 }

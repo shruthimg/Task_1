@@ -31,7 +31,7 @@ export class TableComponent implements OnInit {
 			this.headers = this.data.header.rows[0].columns;
 			this.rows = this.data.body.rows;
 			this.rawData = this.rows.slice();
-		}
+		}		
 	}
 
 	sort(column: TableColumn, index: number) {
