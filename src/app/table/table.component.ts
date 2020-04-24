@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	OnInit,
-	TemplateRef
+	TemplateRef,
+	OnChanges
 } from '@angular/core';
 
 @Component({
@@ -11,7 +12,7 @@ import {
 	styleUrls: ['./table.component.css']
 
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
 	headers: TableColumn[];
 	rows: TableRow[];
 	index: number;
@@ -25,7 +26,13 @@ export class TableComponent implements OnInit {
 			rows: TableRow[]
 		}
 	};
-	
+	ngOnChanges(): void {
+		if (this.data) {
+			this.headers = this.data.header.rows[0].columns;
+			this.rows = this.data.body.rows;
+			this.rawData = this.rows.slice();
+		}
+	  }
 	ngOnInit(): void {
 		if (this.data) {
 			this.headers = this.data.header.rows[0].columns;

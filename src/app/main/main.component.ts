@@ -3,8 +3,7 @@ import {
 	OnInit,
 	ViewChild,
 	TemplateRef,
-	ChangeDetectorRef,
-	AfterViewInit
+	ChangeDetectorRef
 } from '@angular/core';
 import {
 	FormBuilder,
@@ -27,12 +26,12 @@ import * as jsonData from '../../assets/employeeDetails.json';
 	templateUrl: './main.component.html',
 	styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit, AfterViewInit {
-	@ViewChild('nameTemplate') nameTemplate: TemplateRef<any>;
-	@ViewChild('dateTemplate') dateTemplate: TemplateRef<any>;
-	@ViewChild('roleTemplate') roleTemplate: TemplateRef<any>;
-	@ViewChild('deptTemplate') deptTemplate: TemplateRef<any>;
-	@ViewChild('commentTemplate') commentTemplate: TemplateRef<any>;
+export class MainComponent implements OnInit {
+	@ViewChild('nameTemplate',{static: true}) nameTemplate: TemplateRef<any>;
+	@ViewChild('dateTemplate' ,{static: true}) dateTemplate: TemplateRef<any>;
+	@ViewChild('roleTemplate' ,{static: true}) roleTemplate: TemplateRef<any>;
+	@ViewChild('deptTemplate' ,{static: true}) deptTemplate: TemplateRef<any>;
+	@ViewChild('commentTemplate',{static: true}) commentTemplate: TemplateRef<any>;
 	data: {
 		header: {
 			rows: TableRow[]
@@ -85,6 +84,13 @@ export class MainComponent implements OnInit, AfterViewInit {
 				}
 			]
 		}
+		
+		const templateMap: Map<string, TemplateRef<any>> = new Map<string, TemplateRef<any>>();
+		templateMap.set("name", this.nameTemplate);
+		templateMap.set("startDate", this.dateTemplate);
+		templateMap.set("jobRole", this.roleTemplate);
+		templateMap.set("department", this.deptTemplate);
+		templateMap.set("comment", this.commentTemplate);
 		if (localStorageData) {
 			this.data.body.rows = localStorageData.map(emp => {
 				return <TableRow>{
@@ -95,33 +101,11 @@ export class MainComponent implements OnInit, AfterViewInit {
 								value: emp[headerColumn.id],
 								active: false
 							},
-							reference: ''
+							reference: templateMap.get(headerColumn.id)
 						}
 					})
 				}
 			});
-		}
-	}
-	ngAfterViewInit() {
-		this.data.body.rows.forEach(row => row.columns.forEach(col => {
-			switch (col.id) {
-				case 'name':
-					col.reference = this.nameTemplate;
-					break;
-				case 'startDate':
-					col.reference = this.dateTemplate;
-					break;
-				case 'jobRole':
-					col.reference = this.roleTemplate;
-					break;
-				case 'department':
-					col.reference = this.deptTemplate;
-					break;
-				case 'comment':
-					col.reference = this.commentTemplate;
-					break;
-			}
-		}))
-		this.cdr.detectChanges();
+		}	 
 	}
 }
