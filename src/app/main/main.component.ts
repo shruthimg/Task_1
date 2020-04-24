@@ -1,10 +1,8 @@
 import {
 	Component,
-	Input,
 	OnInit,
 	ViewChild,
 	TemplateRef,
-	AfterViewInit,
 	ChangeDetectorRef
 } from '@angular/core';
 import {
@@ -28,7 +26,7 @@ import * as jsonData from '../../assets/employeeDetails.json';
 	templateUrl: './main.component.html',
 	styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit {
 	@ViewChild('nameTemplate') nameTemplate: TemplateRef<any>;
 	@ViewChild('dateTemplate') dateTemplate: TemplateRef<any>;
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef<any>;
@@ -77,11 +75,11 @@ export class MainComponent implements OnInit, AfterViewInit {
 		this.data.header = {
 			rows: [
 				<TableRow>{
-					columns: [<TableColumn>{ name: "Name", sort: true, id: "name" },
-					<TableColumn>{ name: "Start Date", sort: false, id: "startDate" },
-					<TableColumn>{ name: "Job Role", sort: false, id: "jobRole" },
-					<TableColumn>{ name: "Department", sort: false, id: "department" },
-					<TableColumn>{ name: "Comment", sort: false, id: "comment" }
+					columns: [<TableColumn>{ name: "Name", sort: {active: true, order: ''}, id: "name" },
+					<TableColumn>{ name: "Start Date", sort: {active: false, order: ''}, id: "startDate" },
+					<TableColumn>{ name: "Job Role", sort: {active: false, order: ''}, id: "jobRole" },
+					<TableColumn>{ name: "Department", sort: {active: false, order: ''}, id: "department" },
+					<TableColumn>{ name: "Comment", sort: {active: true, order: ''}, id: "comment" }
 					]
 				}
 			]
@@ -108,28 +106,5 @@ export class MainComponent implements OnInit, AfterViewInit {
 				}
 			});
 		}
-	}
-
-	ngAfterViewInit() {
-		this.data.body.rows.forEach(row => row.columns.forEach(col => {
-			switch (col.name) {
-				case 'Name':
-					col.reference = this.nameTemplate;
-					break;
-				case 'Start Date':
-					col.reference = this.dateTemplate;
-					break;
-				case 'Job Role':
-					col.reference = this.roleTemplate;
-					break;
-				case 'Department':
-					col.reference = this.deptTemplate;
-					break;
-				case 'Comment':
-					col.reference = this.commentTemplate;
-					break;
-			}
-		}))
-		this.cdr.detectChanges();
 	}
 }

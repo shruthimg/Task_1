@@ -12,11 +12,11 @@ import {
 
 })
 export class TableComponent implements OnInit {
-	headers: TableRow[];
+	headers: TableColumn[];
 	rows: TableRow[];
+	index: number;
 	rawData: TableRow[];
 	defaultTemplate: TemplateRef<any>;
-	counter: number = 0;
 	@Input() data: {
 		header: {
 			rows: TableRow[]
@@ -25,29 +25,29 @@ export class TableComponent implements OnInit {
 			rows: TableRow[]
 		}
 	};
-
+	
 	ngOnInit(): void {
 		if (this.data) {
 			this.headers = this.data.header.rows[0].columns;
 			this.rows = this.data.body.rows;
 			this.rawData = this.rows.slice();
-		}		
+		}
 	}
 
-	sort(sort: any, column: TableColumn) {
-		if (column.sort) {
-			this.counter = this.counter % 3;
-			const index = column.name === 'Name' ? 0 : 0;
-			if (this.counter !== 2) {
+	sort(column: TableColumn, index: number) {
+		if (column.sort.active) {
+			this.index = index;
+			column.sort.order = column.sort.order === 'asec' ? column.sort.order = 'desc' : column.sort.order === 'desc' ? '' : 'asec';
+
+			if (column.sort.order !== '') {
 				const data = this.rows.slice();
 				data.sort((a, b) => {
 					const arg1 = a.columns[index].contentModel.value;
 					const arg2 = b.columns[index].contentModel.value
-					if (arg1 < arg2) {
-
-						return -1 * (this.counter === 0 ? 1 : -1);
-					} else if (arg1 > arg2) {
-						return 1 * (this.counter === 0 ? 1 : -1);
+					if (arg1.toLowerCase() < arg2.toLowerCase()) {
+						return -1 * (column.sort.order === 'asec' ? 1 : -1);
+					} else if (arg1.toLowerCase() > arg2.toLowerCase()) {
+						return 1 * (column.sort.order === 'asec' ? 1 : -1);
 					} else {
 						return 0;
 					}
@@ -57,19 +57,18 @@ export class TableComponent implements OnInit {
 			else {
 				this.rows = this.rawData;
 			}
-			this.counter++;
 		}
 	}
 }
 
 export class TableRow {
-	columns: TableColumn[];	
+	columns: TableColumn[];
 	styleClass: string;
 }
 
 export class TableColumn {
 	name: string;
-	sort: boolean;
+	sort: any;
 	reference: any;
 	contentModel: {
 		active: boolean,

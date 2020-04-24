@@ -2,10 +2,10 @@
   <div class="resp-table">
     <div id="resp-table-header">
       <div class="resp-table-row">
-        <div class="table-header-cell" (click)="sort($event, column)" *ngFor="let column of headers">
+        <div class="table-header-cell" (click)="sort(column, i)" *ngFor="let column of headers; let i = index">
           {{column.name}}
-          <i class="fa" [ngClass]="{'fa-unsorted': (column.sort) , 'fa-sort-asc': (column.sort  && counter === 1),
-          'fa-sort-desc': (column.sort  && counter === 2) }" aria-hidden="true"> </i>
+          <i class="fa" [ngClass]="{'fa-unsorted': column.sort.active, 'fa-sort-asc': (column.sort.active && column.sort.order === 'asec'),
+          'fa-sort-desc': (column.sort.active && column.sort.order === 'desc') }"> </i>
         </div>
       </div>
     </div>
