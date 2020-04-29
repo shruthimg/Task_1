@@ -17,3 +17,14 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.apply {
+  width: 90px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: -14px;
+}
+.clear {
+  width: 90px;
+  margin-left: -15px;
+  margin-top: 10px;
+}

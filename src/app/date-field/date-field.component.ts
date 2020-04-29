@@ -1,6 +1,7 @@
 import {Component, ElementRef, forwardRef, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {BsDatepickerConfig} from 'ngx-bootstrap';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/ngx-bootstrap-datepicker';
+
 
 @Component({
   selector: 'app-date-field',

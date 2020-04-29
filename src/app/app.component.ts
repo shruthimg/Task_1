@@ -27,7 +27,7 @@ import { DatePipe } from '@angular/common';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	public flag: boolean;
+	flag: boolean;
 	empDetail = [];
 	myForm: FormGroup;
 	roles: string[] = ['Tester', 'Developer', 'Business analyst'];

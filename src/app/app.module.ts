@@ -18,6 +18,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DatePipe } from '@angular/common';
     BsDatepickerModule.forRoot(),
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    PopoverModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

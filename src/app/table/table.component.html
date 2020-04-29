@@ -2,11 +2,16 @@
   <div class="resp-table">
     <div id="resp-table-header">
       <div class="resp-table-row">
-        <div class="table-header-cell" (click)="sort(column, i)" *ngFor="let column of headers; let i = index">
+        <div class="table-header-cell" *ngFor="let column of headers; let i = index">
           {{column.name}}
-          <i class="fa" [ngClass]="{'fa-unsorted': column.sort.active, 'fa-sort-asc': (column.sort.active && column.sort.order === 'asec'),
-          'fa-sort-desc': (column.sort.active && column.sort.order === 'desc') }"> </i>
+          <span class="fa" [ngClass]="{'fa-unsorted': column.sort.active, 'fa-sort-asc': (column.sort.active && column.sort.order === 'asec'),
+          'fa-sort-desc': (column.sort.active && column.sort.order === 'desc') }" (click)="sort(column, i)"> </span>
+
+          <span class="fa" [ngClass]="{'fad fa-filter': column.filter}" (click)="filter(column, i)"
+            containerClass="popoverClass" [popover]="fiterTemplate" [placement]="'bottom'" [container]="'body'"
+            [outsideClick]="true"></span>
         </div>
+
       </div>
     </div>
     <div id="resp-table-body">
@@ -22,4 +27,40 @@
 
 <ng-template #defaultTemplate let-column>
   {{column.contentModel.value}}
+</ng-template>
+
+<ng-template #fiterTemplate>
+  <form [formGroup]="filterForm">
+   
+      <div>
+        <input type="radio" class="custom-control-input" value="contains" name="filter" formControlName="filter">
+      <label class="labelCaption">Contains</label>
+      </div>
+
+      <div>
+        <input type="radio" class="custom-control-input" value="startWith" name="filter" formControlName="filter">
+        <label class="labelCaption">Start With</label>
+      </div>
+
+      <app-text-field formControlName="filterValue" [innerValue]="filterForm.controls.filterValue.value"
+        [textFieldName]="'Value'"></app-text-field>
+
+      <div>
+        <label class="switch">
+          <input type="checkbox" formControlName="toggle">
+          <span class="slider round"></span>
+        </label>
+        <label class="labelCaption">Case Sensitive</label>
+      </div>
+
+      <div class="col-md-6">
+        <app-button [buttonName]="'Clear'" [className]="'clear'" (click)="close()" [primary]=false></app-button>
+      </div>
+      <div class="col-md-6">
+        <app-button [primary]=true [buttonName]="'Apply'" [className]="'apply'" (click)="onSubmit(filterForm.value)">
+        </app-button>
+      </div>
+    
+  </form>
+
 </ng-template>

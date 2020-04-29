@@ -7,3 +7,7 @@
 .glyphicon {
   cursor: pointer;
 }
+popover-container {
+  top: 43px !important;
+  width: 17% !important;
+}

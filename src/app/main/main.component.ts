@@ -75,11 +75,11 @@ export class MainComponent implements OnInit {
 		this.data.header = {
 			rows: [
 				<TableRow>{
-					columns: [<TableColumn>{ name: "Name", sort: { active: true, order: '' }, id: "name" },
-					<TableColumn>{ name: "Start Date", sort: { active: false, order: '' }, id: "startDate" },
-					<TableColumn>{ name: "Job Role", sort: { active: false, order: '' }, id: "jobRole" },
-					<TableColumn>{ name: "Department", sort: { active: false, order: '' }, id: "department" },
-					<TableColumn>{ name: "Comment", sort: { active: true, order: '' }, id: "comment" }
+					columns: [<TableColumn>{ name: "Name", sort: { active: true, order: '' }, filter: true, id: "name" },
+					<TableColumn>{ name: "Start Date", sort: { active: false, order: '' }, filter: false, id: "startDate" },
+					<TableColumn>{ name: "Job Role", sort: { active: false, order: '' }, filter: false, id: "jobRole" },
+					<TableColumn>{ name: "Department", sort: { active: false, order: '' }, filter: false, id: "department" },
+					<TableColumn>{ name: "Comment", sort: { active: true, order: '' }, filter: false, id: "comment" }
 					]
 				}
 			]
